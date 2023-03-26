@@ -1,16 +1,37 @@
 import React, { useRef } from "react";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
-import { Container, Forms, Body } from './styles';
+import getValidationErrors from "../../../utils/getValidationErrors";
+import * as Yup from "yup";
 
+import { Container, Forms, Body } from './styles';
 import { RiMailLine, RiLock2Line } from "react-icons/ri";
 
 function SignIn() {
     const formRef = useRef(null);
 
     const handleSubmit = async (data) => {
-        console.log('login', data.login);
-        console.log('senha', data.senha);
+        try {
+            formRef.current?.setErrors({});
+            const schema = Yup.object().shape({
+                login: Yup.string()
+                    .required("e-mail obrigatório!")
+                    .email("O email precisa ser válido"),
+                senha: Yup.string()
+                    .required("Senha obrigatória!")
+                    .min(8, "A senha precisa ter no mínimo 8 caracteres")
+                    .max(30, "A senha precisa ter no máximo 30 caracteres"),
+            });
+            await schema.validate(data, {
+                abortEarly: false,
+            });
+            formRef.current?.setErrors({});
+
+        } catch (err) {
+            console.log(err);
+            const errors = getValidationErrors(err);
+            formRef.current?.setErrors(errors);
+        }
     };
 
     return (
