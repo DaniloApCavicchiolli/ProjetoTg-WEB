@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import * as Yup from "yup";
@@ -7,6 +7,7 @@ import getValidationErrors from "../../../utils/getValidationErrors";
 import { Container, Forms, Body } from "./styles";
 
 import { RiMailLine, RiLock2Line, RiBuilding4Line } from "react-icons/ri";
+import { AuthContextFornecedor } from "../../../contexts/FornecedorContext";
 
 
 const schema = Yup.object().shape({
@@ -23,6 +24,7 @@ const schema = Yup.object().shape({
 
 function SignUp() {
     const formRef = useRef(null);
+    const { createFornecedor } = useContext(AuthContextFornecedor);
 
     const handleSubmit = async (data) => {
         try {
@@ -30,6 +32,8 @@ function SignUp() {
                 abortEarly: false,
             });
             formRef.current?.setErrors({});
+
+            await createFornecedor(data);
 
         } catch (err) {
             const errors = getValidationErrors(err);

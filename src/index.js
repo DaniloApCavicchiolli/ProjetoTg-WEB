@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { AuthProvider } from './contexts/UserContext';
 import { AuthProviderFornecedor } from './contexts/FornecedorContext';
 
-import App from './views/pages/SignIn';
+import App from './views/pages/SignUp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
