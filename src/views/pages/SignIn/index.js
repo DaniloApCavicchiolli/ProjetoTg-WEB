@@ -4,6 +4,7 @@ import Input from "../../../components/Input";
 import getValidationErrors from "../../../utils/getValidationErrors";
 import * as Yup from "yup";
 import { AuthContextFornecedor } from "../../../contexts/FornecedorContext";
+import { useHistory } from "react-router";
 
 import { Container, Forms, Body } from './styles';
 import { RiMailLine, RiLock2Line } from "react-icons/ri";
@@ -11,6 +12,7 @@ import { RiMailLine, RiLock2Line } from "react-icons/ri";
 function SignIn() {
     const formRef = useRef(null);
     const { signIn } = useContext(AuthContextFornecedor);
+    const History = useHistory();
 
     const handleSubmit = async (data) => {
         try {
@@ -30,6 +32,11 @@ function SignIn() {
             formRef.current?.setErrors({});
 
             const resp = await signIn(data);
+            if (resp != false) {
+                if (resp.fornecedor.nivel === 999) {
+                    History.push('/dashboard')
+                }
+            }
 
         } catch (err) {
             console.log(err);

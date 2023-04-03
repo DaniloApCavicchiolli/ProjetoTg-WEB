@@ -1,5 +1,8 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import {
+    RiDashboardLine,
+} from "react-icons/ri";
 
 import SignIn from "../views/pages/SignIn";
 import SignUp from "../views/pages/SignUp";
@@ -23,7 +26,15 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 export const routes = {
-    protected: [],
+    protected: [
+        {
+            path: "/dashboard",
+            title: "Dashboard",
+            role: [999],
+            icon: RiDashboardLine,
+            component: () => <div>Dashboard</div>,
+        },
+    ],
     public: [
         {
             path: "/",

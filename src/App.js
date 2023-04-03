@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/UserContext";
 import { AuthProviderFornecedor } from "./contexts/FornecedorContext";
-import { routes } from "./routes/routes";
+import { routes, PrivateRoute } from "./routes/routes";
+
+import Dashboard from "./views/layouts/Dashboard";
 
 function App() {
 
@@ -21,7 +23,7 @@ function App() {
                   component={route.component}
                 />
               ))}
-              {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
+              <PrivateRoute path="/dashboard" component={Dashboard} />
             </Switch>
           </Router>
         </AuthProvider>
