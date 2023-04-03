@@ -61,7 +61,7 @@ function SignIn() {
                 </Forms>
 
                 <div>
-                    Não tem uma conta? <a href="/">Cadastre-se</a>
+                    Não tem uma conta? <a href="/register">Cadastre-se</a>
                 </div>
             </Body>
         </Container>

@@ -1,16 +1,14 @@
 
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { AuthProvider } from "./contexts/UserContex";
+import { AuthProvider } from "./contexts/UserContext";
 import { AuthProviderFornecedor } from "./contexts/FornecedorContext";
-import { routes, PrivateRoute } from "./routes/private.routes";
-import Dashboard from "./views/layouts/Dashboard";
+import { routes } from "./routes/routes";
 
 function App() {
 
   return (
     <>
-
       <AuthProviderFornecedor>
         <AuthProvider>
           <Router>
@@ -23,7 +21,7 @@ function App() {
                   component={route.component}
                 />
               ))}
-              <PrivateRoute path="/dashboard" component={Dashboard} />
+              {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
             </Switch>
           </Router>
         </AuthProvider>
