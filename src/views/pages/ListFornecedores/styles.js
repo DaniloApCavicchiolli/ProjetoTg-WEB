@@ -5,7 +5,7 @@ import fonts from "../../../styles/fonts";
 export const Container = styled.div`
   align-self: center;
   width: 95%;
-  height: 87%;
+  height: 85%;
   margin-top: 20px;
   border-spacing: 0px 10px;
   border-radius: 12px;
@@ -38,16 +38,11 @@ export const Content = styled.div`
   div {
     display: flex;
     align-items: center;
+    /* margin-bottom: 15px;  */
     justify-content: space-between; 
     /* background-color: yellow;  */
   }
   h1 {
-    font-size: 24px;
-    font: ${fonts[700]};
-    color: ${colors.dark};
-    margin-left: 62px; 
-  }
-  p {
     font-size: 24px;
     font: ${fonts[700]};
     color: ${colors.dark};
@@ -70,12 +65,6 @@ export const Content = styled.div`
     font: ${fonts[400]};
     color: ${colors.darkGrayishBlue}
   }
-  #p {
-    margin-left: 62px;
-    font-size: 14px;
-    font: ${fonts[400]};
-    color: ${colors.darkGrayishBlue}
-  }
 `;
 
 export const Filtros = styled.div` 
@@ -83,6 +72,21 @@ export const Filtros = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  /* background-color: blue; */
+  > p {
+    width: 140px;
+    height: 35px;
+    font-size: 12px;
+    font: ${fonts[400]};
+    color: ${colors.darkGrayishBlue};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    box-shadow:0px 5px 6px rgba(0,0,0,0.6);
+  }
   > #select {
     border-radius: 8px;
     margin-left: 50px;

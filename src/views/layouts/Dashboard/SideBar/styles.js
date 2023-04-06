@@ -2,7 +2,8 @@
 import styled from "styled-components";
 import colors from "../../../../styles/colors";
 import fonts from "../../../../styles/fonts";
-import imageLogo from "../../../../assets/logo1.png";
+// import imageLogo from "../../../../assets/logo1.png";
+import imageLogo from "../../../../assets/seuLogo.png";
 
 export const Container = styled.div`
   display: flex;

@@ -52,7 +52,7 @@ function ListagemUser() {
             <Container>
                 <Content>
                     <div style={{ marginBottom: '15px' }}>
-                        <p>Usuários</p>
+                        <h1>Usuários</h1>
                         <Buscar>
                             <input style={{ marginLeft: '10px' }} name="buscar" placeholder="buscar" onChange={(e) => setBuscar(e.target.value)} />
                             <div id='button' type="button" onClick={() => { }}>
@@ -65,7 +65,7 @@ function ListagemUser() {
                         </button>
                     </div>
                     <div>
-                        <p id='p'>Mais de {registros} novos usuários</p>
+                        <h2 id='p'>Mais de {registros} novos usuários</h2>
                     </div>
                 </Content>
                 {usersPaginado?.map((user, index) => (
@@ -81,7 +81,7 @@ function ListagemUser() {
                     shape="rounded"
                     style={{
                         display: "flex",
-                        alignItems: 'center',
+                        alignItems: 'flex-end',
                         justifyContent: 'center',
                         marginBottom: '12px'
                     }}

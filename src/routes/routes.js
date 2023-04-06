@@ -2,12 +2,14 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import {
     RiDashboardLine,
-    RiTeamLine
+    RiTeamLine,
+    RiUserSharedLine
 } from "react-icons/ri";
 
 import SignIn from "../views/pages/SignIn";
 import SignUp from "../views/pages/SignUp";
 import ListagemUser from "../views/pages/ListUsers";
+import ListagemFornecedor from "../views/pages/ListFornecedores";
 import { getToken } from "../services/auth";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -42,7 +44,14 @@ export const routes = {
             role: [999],
             icon: RiTeamLine,
             component: () => <ListagemUser />,
-          },
+        },
+        {
+            path: "/dashboard/fornecedor",
+            title: "Fornecedores",
+            role: [999],
+            icon: RiUserSharedLine,
+            component: () => <ListagemFornecedor />,
+        },
     ],
     public: [
         {
