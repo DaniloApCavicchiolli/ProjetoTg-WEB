@@ -26,6 +26,7 @@ function Dashboard({ props }) {
 
   return (
     <Container>
+      <Sidebar ativado={title} />
       <Content>
         <Header name={title} />
         <Switch>

@@ -72,18 +72,9 @@ function Header({ name }) {
           <b>{name}</b>
         </NamePage>
         {/* {location.pathname !== "/dashboard" &&
-          location.pathname !== "/dashboard/GraficosFornecedor" &&
           location.pathname !== "/dashboard/users" &&
           location.pathname !== "/dashboard/fornecedor" &&
-          location.pathname !== "/dashboard/enviadosAdmin" &&
-          location.pathname !== "/dashboard/enviados" &&
-          location.pathname !== "/dashboard/solicitacoesAdmin" &&
-          location.pathname !== "/dashboard/solicitacoes" &&
-          location.pathname !== "/dashboard/produtosInsumos" &&
-          location.pathname !== "/dashboard/regiaoCidades" &&
           location.pathname !== "/dashboard/profile" &&
-          location.pathname !== "/dashboard/produtosQueTrabalha" &&
-          location.pathname !== "/dashboard/BuyPlan" &&
           (<Buscar>
             <button type="button" onClick={() => { }}>
               <RiSearchLine size={20} />
@@ -93,15 +84,8 @@ function Header({ name }) {
 
       </Content>
       {/* {
-        location.pathname !== "/dashboard/BuyPlan" &&
         location.pathname !== "/dashboard/users" &&
         location.pathname !== "/dashboard/fornecedor" &&
-        location.pathname !== "/dashboard/produtosInsumos" &&
-        location.pathname !== "/dashboard/regiaoCidades" &&
-        location.pathname !== "/dashboard/produtosQueTrabalha" &&
-        location.pathname !== "/dashboard/GraficosFornecedor" &&
-        location.pathname !== "/dashboard/enviados" &&
-        location.pathname !== "/dashboard/solicitacoes" &&
         location.pathname !== "/dashboard/profile" &&
         (<Cards>
           <div style={{ backgroundColor: '#626679' }}>
@@ -138,5 +122,3 @@ function Header({ name }) {
 }
 
 export default Header;
-
-/*  onChange={(ev) => setBusca(ev.target.value)} */
