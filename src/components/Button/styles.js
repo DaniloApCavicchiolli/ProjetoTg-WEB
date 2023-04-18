@@ -20,7 +20,7 @@ export const Container = styled.button`
     ${({ shouldHover }) => shouldHover
         ?
         `&:hover {  
-            background-color: rgb(248, 170, 39, 0.1); 
+            background-color: rgb(122, 145, 134, 0.1); 
             color: ${colors.secondary}; 
             border-right: 5px solid ${colors.secondary};
         }`

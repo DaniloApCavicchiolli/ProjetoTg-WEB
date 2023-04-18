@@ -49,7 +49,7 @@ export const Body = styled.div`
         font-weight: 400;
         > a {
             margin-left: 10px;
-            color: #4040ff;
+            color: #8000ff;
         }
   }
 overflow: auto;
@@ -86,7 +86,7 @@ export const Forms = styled(Form)`
     > span {
     display: flex;
     margin-bottom: 12px;
-    color: ${colors.darKGray};
+    color: ${colors.textLabel};
     /* ${fonts[400]}; */
     }
     svg {

@@ -1,8 +1,10 @@
 /* eslint-disable import/no-anonymous-default-export */
 /* eslint-disable no-dupe-keys */
 export default {
-    primary: "#0000ff",
-    secondary: "#F8AA27",
+    primary: "#5f2598",
+    // primary: "#0000ff",
+    secondary: "#7a9186",
+    textLabel: "#af92cb",
     background: "#EFF1F9",
     darkCyan: "#0C9DA4",
     darkCyan2: "#22A6AC",
