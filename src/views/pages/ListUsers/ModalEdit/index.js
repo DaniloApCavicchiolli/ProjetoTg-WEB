@@ -6,7 +6,6 @@ import { AuthContext } from "../../../../contexts/UserContext";
 import getValidationErrors from "../../../../utils/getValidationErrors";
 import {
     RiMailLine,
-    RiLock2Line,
     RiPhoneLine,
     RiRoadMapLine,
     RiCommunityLine,
@@ -15,9 +14,9 @@ import {
 
 import { Container, Forms, Body, Content, Column, Image } from "./styles";
 
-function ModalCreate({ setShowModalCreate, loading }) {
+function ModalEdit({ setShowModalEdit, user, loading }) {
     const formRef = useRef(null);
-    const { createUser } = useContext(AuthContext);
+    const { updateUser } = useContext(AuthContext);
 
     const handleSubmit = async (data) => {
         try {
@@ -36,21 +35,16 @@ function ModalCreate({ setShowModalCreate, loading }) {
                 endereco: Yup.string()
                     .min(3, "O enderço precisa ter no mínimo 3 caracteres")
                     .max(30, "O endereço precisa ter no máximo 30 caracteres"),
-                password: Yup.string()
-                    .required("Senha obrigatória!")
-                    .min(8, "A senha precisa ter no mínimo 8 caracteres")
-                    .max(20, "A senha precisa ter no máximo 20 caracteres"),
             });
             await schema.validate(data, {
                 abortEarly: false,
             });
             formRef.current?.setErrors({});
 
-            await createUser(data);
+            await updateUser(data, user?.id);
             loading();
-            setShowModalCreate(false);
+            setShowModalEdit(false);
         } catch (err) {
-            console.log(err);
             const errors = getValidationErrors(err);
             formRef.current?.setErrors(errors);
         }
@@ -62,11 +56,11 @@ function ModalCreate({ setShowModalCreate, loading }) {
                 <Body>
                     <div>
                         <Image style={{ background: 'transparent' }} />
-                        <h1>Cadastrar Usuário</h1>
+                        <h1>Editar Usuário</h1>
                         <Image />
                     </div>
                     <p>Confira os dados abaixo</p>
-                    <Forms ref={formRef} onSubmit={handleSubmit}>
+                    <Forms ref={formRef} onSubmit={handleSubmit} initialData={{ ...user }}>
                         <Content>
                             <Column>
                                 <div>
@@ -101,19 +95,19 @@ function ModalCreate({ setShowModalCreate, loading }) {
                                         icon={RiRoadMapLine}
                                     />
                                 </div>
-                                <div>
+                                {/* <div>
                                     <span>Senha</span>
                                     <Input name="password" placeholder="****" type="password"
                                         icon={RiLock2Line}
                                     />
-                                </div>
+                                </div> */}
                             </Column>
                         </Content>
                         <div id='button' style={{ backgroundColor: "#FFF" }}>
                             <Button style={{ fontSize: '18px', width: "30%" }}>Salvar</Button>
                         </div>
                     </Forms>
-                    <a href="#" onClick={() => setShowModalCreate(false)}>
+                    <a href="#" onClick={() => setShowModalEdit(false)}>
                         Voltar
                     </a>
                 </Body>
@@ -122,4 +116,4 @@ function ModalCreate({ setShowModalCreate, loading }) {
     );
 }
 
-export default ModalCreate;
+export default ModalEdit;

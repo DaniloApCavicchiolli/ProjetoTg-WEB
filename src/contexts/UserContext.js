@@ -37,12 +37,13 @@ const AuthProvider = ({ children }) => {
     const updateUser = async (data, id) => {
         try {
             const resp = await api.put(`/users/${id}`, data);
-            toast.success(resp?.data?.message);
-            return resp.data;
+            if (resp?.status === 200) {
+                toast.success("Usuário atualizado com sucesso");
+                return resp.data;
+            }
         } catch (err) {
             console.log(err);
-            toast.error(err?.response?.data?.error || "Ops... Ocorreu um erro");
-
+            toast.error(err?.response?.data?.error || "Não foi possível atualizar usuário");
             return false;
         }
     };
@@ -51,11 +52,13 @@ const AuthProvider = ({ children }) => {
     const createUser = async (data) => {
         try {
             const resp = await api.post(`/users`, data);
-            toast.success("Criado com sucesso");
-            return resp.data;
+            if (resp.status === 200) {
+                toast.success("Usuário criado com sucesso");
+                return resp.data;
+            }
         } catch (err) {
             console.log(err);
-            toast.error(err?.response?.data?.error || "Ops... Ocorreu um erro");
+            toast.error(err?.response?.data?.error || "Não foi possível criar usuário");
             return false;
         }
     };

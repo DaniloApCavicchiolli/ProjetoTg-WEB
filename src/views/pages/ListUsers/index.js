@@ -4,6 +4,7 @@ import api from "../../../services/api";
 import UserRow from "../../../components/UserRow";
 import Pagination from "@mui/material/Pagination";
 import ModalCreate from "./ModalCreate";
+import ModalEdit from "./ModalEdit";
 
 import { Container, Content, Buscar } from "./styles";
 
@@ -20,6 +21,8 @@ function ListagemUser() {
 
     const [registros, setRegistros] = useState();
 
+    const [userSelected, setUserSelected] = useState(null);
+    const [showModalEdit, setShowModalEdit] = useState(false);
     const [showModalCreate, setShowModalCreate] = useState(false);
 
 
@@ -57,6 +60,13 @@ function ListagemUser() {
                     loading={loadingUsers}
                 />
             )}
+            {showModalEdit && (
+                <ModalEdit
+                    setShowModalEdit={setShowModalEdit}
+                    user={userSelected}
+                    loading={loadingUsers}
+                />
+            )}
             <Container>
                 <Content>
                     <div>
@@ -80,6 +90,8 @@ function ListagemUser() {
                     <UserRow
                         key={index}
                         users={user}
+                        setUserSelected={setUserSelected}
+                        setShowModalEdit={setShowModalEdit}
                     />
                 ))}
                 <Pagination
