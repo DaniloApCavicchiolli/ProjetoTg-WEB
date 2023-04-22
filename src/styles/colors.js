@@ -2,10 +2,10 @@
 /* eslint-disable no-dupe-keys */
 export default {
     primary: "#5f2598",
-    // primary: "#0000ff",
     secondary: "#7a9186",
     textLabel: "#af92cb",
     background: "#EFF1F9",
+    linck: "##8000ff",
     darkCyan: "#0C9DA4",
     darkCyan2: "#22A6AC",
     dark: "#3F4254",

@@ -4,12 +4,9 @@ import Tooltip from "../Tooltip";
 
 export const Container = styled.div`
   margin-bottom: 16px;
-  /* border: 1px solid black; */
-  /* border-radius: 10px; */
-  /* border-bottom: 1px solid #d9d9d9; */
   width: 90%;
   color: #f4ede8;
-  background-color: ${({backColor}) => backColor ?? '#FFF'};
+  background-color: ${({ backColor }) => backColor ?? '#FFF'};
   transition: all 0.3s;
   display: flex;
   align-items: center;
@@ -49,8 +46,8 @@ export const Container = styled.div`
     font-size: 15px;
     padding-left: 15px;
     ${(props) =>
-      props.isSize &&
-      css`
+    props.isSize &&
+    css`
         height: 35px;
       `}
     &::placeholder {
@@ -58,16 +55,12 @@ export const Container = styled.div`
     }
   }
   svg {
-    /* background-color: transparent; */
     background: transparent;
-    /* margin-right: 18px; */
-    /* padding-right: 15px; */
   }
 `;
 
 export const Error = styled(Tooltip)`
   height: 20px;
-  margin-left: 16px;
   svg {
     margin: 0;
   }
