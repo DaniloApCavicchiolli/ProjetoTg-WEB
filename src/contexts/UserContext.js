@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
             return data;
         } catch (err) {
             console.log(err);
-            toast.error(err?.response?.data?.error || "Ops... Ocorreu um erro");
+            toast.error(err?.response?.data?.error || "Não foi possível excluir o usuário");
 
             return false;
         }

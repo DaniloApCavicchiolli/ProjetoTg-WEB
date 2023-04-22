@@ -5,6 +5,7 @@ import UserRow from "../../../components/UserRow";
 import Pagination from "@mui/material/Pagination";
 import ModalCreate from "./ModalCreate";
 import ModalEdit from "./ModalEdit";
+import ModalDelete from "./ModalDelete";
 
 import { Container, Content, Buscar } from "./styles";
 
@@ -24,7 +25,7 @@ function ListagemUser() {
     const [userSelected, setUserSelected] = useState(null);
     const [showModalEdit, setShowModalEdit] = useState(false);
     const [showModalCreate, setShowModalCreate] = useState(false);
-
+    const [showModalDelete, setShowModalDelete] = useState(false);
 
     const loadingUsers = async () => {
         try {
@@ -67,6 +68,13 @@ function ListagemUser() {
                     loading={loadingUsers}
                 />
             )}
+            {showModalDelete && (
+                <ModalDelete
+                    setShowModalDelete={setShowModalDelete}
+                    user={userSelected}
+                    loading={loadingUsers}
+                />
+            )}
             <Container>
                 <Content>
                     <div>
@@ -92,6 +100,7 @@ function ListagemUser() {
                         users={user}
                         setUserSelected={setUserSelected}
                         setShowModalEdit={setShowModalEdit}
+                        setShowModalDelete={setShowModalDelete}
                     />
                 ))}
                 <Pagination
