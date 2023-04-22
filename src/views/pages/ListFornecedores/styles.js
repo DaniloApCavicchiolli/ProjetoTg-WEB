@@ -38,7 +38,6 @@ export const Content = styled.div`
   div {
     display: flex;
     align-items: center;
-    /* margin-bottom: 15px;  */
     justify-content: space-between; 
     /* background-color: yellow;  */
   }

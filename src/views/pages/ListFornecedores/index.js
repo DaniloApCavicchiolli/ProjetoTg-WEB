@@ -49,7 +49,7 @@ function ListagemFornecedor() {
                     <div>
                         <h1>Fornecedores</h1>
                         <Buscar>
-                            <input style={{ marginLeft: '10px' }} name="buscar" placeholder="buscar" onChange={() => {}} />
+                            <input style={{ marginLeft: '10px' }} name="buscar" placeholder="buscar..." onChange={() => {}} />
                             <div id='button' type="button" onClick={() => {}}>
                                 <RiSearchLine size={20} />
                             </div>

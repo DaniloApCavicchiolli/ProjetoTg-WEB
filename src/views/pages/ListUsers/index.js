@@ -3,6 +3,7 @@ import { RiFilterLine, RiSearchLine } from "react-icons/ri";
 import api from "../../../services/api";
 import UserRow from "../../../components/UserRow";
 import Pagination from "@mui/material/Pagination";
+import ModalCreate from "./ModalCreate";
 
 import { Container, Content, Buscar } from "./styles";
 
@@ -10,16 +11,17 @@ function ListagemUser() {
 
     const [users, setUsers] = useState([]);
     const [usersBusca, setUsersBusca] = useState([]);
-
     const [buscar, setBuscar] = useState('');
 
     const [page, setPage] = useState(0);
-
     const [pages, setPages] = useState(0);
     const [pagesBusca, setPagesBusca] = useState(0);
     const [totalPagesBusca, setTotalPagesBusca] = useState();
 
     const [registros, setRegistros] = useState();
+
+    const [showModalCreate, setShowModalCreate] = useState(false);
+
 
     const loadingUsers = async () => {
         try {
@@ -29,7 +31,7 @@ function ListagemUser() {
         } catch (err) {
             console.log(err);
         }
-    }; 
+    };
 
     useEffect(() => {
         loadingUsers();
@@ -49,18 +51,24 @@ function ListagemUser() {
 
     return (
         <>
+            {showModalCreate && (
+                <ModalCreate
+                    setShowModalCreate={setShowModalCreate}
+                    loading={loadingUsers}
+                />
+            )}
             <Container>
                 <Content>
-                    <div style={{ marginBottom: '15px' }}>
+                    <div>
                         <h1>Usuários</h1>
                         <Buscar>
-                            <input style={{ marginLeft: '10px' }} name="buscar" placeholder="buscar" onChange={(e) => setBuscar(e.target.value)} />
+                            <input style={{ marginLeft: '10px' }} name="buscar" placeholder="buscar..." onChange={(e) => setBuscar(e.target.value)} />
                             <div id='button' type="button" onClick={() => { }}>
                                 <RiSearchLine size={20} />
                             </div>
                         </Buscar>
                         <button
-                            onClick={() => { }}>
+                            onClick={() => setShowModalCreate(true)}>
                             +
                         </button>
                     </div>

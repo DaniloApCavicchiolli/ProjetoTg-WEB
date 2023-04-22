@@ -47,12 +47,6 @@ export const Content = styled.div`
     color: ${colors.dark};
     margin-left: 62px; 
   }
-  p {
-    font-size: 24px;
-    font: ${fonts[700]};
-    color: ${colors.dark};
-    margin-left: 62px; 
-  }
   button {
     width: 50px;
     height: 50px;
@@ -65,12 +59,6 @@ export const Content = styled.div`
     box-shadow: 0px 5px 6px rgba(0,0,0,0.7); 
   }
   h2 {
-    margin-left: 62px;
-    font-size: 14px;
-    font: ${fonts[400]};
-    color: ${colors.darkGrayishBlue}
-  }
-  #p {
     margin-left: 62px;
     font-size: 14px;
     font: ${fonts[400]};
@@ -102,7 +90,7 @@ export const Buscar = styled.tr`
   input {
     width: 100%;
     height: 100%;
-    color: ${colors.darkGrayishBlue};
+    color: ${colors.orange};
     background-color: transparent;
     font-size: 18px;
     outline: none;
