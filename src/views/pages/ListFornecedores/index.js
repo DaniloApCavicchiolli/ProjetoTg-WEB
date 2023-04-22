@@ -3,6 +3,7 @@ import { RiSearchLine } from "react-icons/ri";
 import api from "../../../services/api";
 import FornecedoresRow from "../../../components/FornecedoresRow";
 import Pagination from '@mui/material/Pagination';
+import ModalCreate from "./ModalCreate";
 
 import { Container, Content, Buscar } from "./styles";
 
@@ -16,6 +17,8 @@ function ListagemFornecedor() {
     const [pagesBusca, setPagesBusca] = useState(0);
     const [totalPagesBusca, setTotalPagesBusca] = useState();
     const [registros, setRegistros] = useState();
+
+    const [showModalCreate, setShowModalCreate] = useState(false);
 
     const loadingUsers = async () => {
         try {
@@ -44,17 +47,23 @@ function ListagemFornecedor() {
 
     return (
         <>
+            {showModalCreate && (
+                <ModalCreate
+                    setShowModalCreate={setShowModalCreate}
+                    loading={loadingUsers}
+                />
+            )}
             <Container>
                 <Content>
                     <div>
                         <h1>Fornecedores</h1>
                         <Buscar>
-                            <input style={{ marginLeft: '10px' }} name="buscar" placeholder="buscar..." onChange={() => {}} />
-                            <div id='button' type="button" onClick={() => {}}>
+                            <input style={{ marginLeft: '10px' }} name="buscar" placeholder="buscar..." onChange={() => { }} />
+                            <div id='button' type="button" onClick={() => { }}>
                                 <RiSearchLine size={20} />
                             </div>
                         </Buscar>
-                        <button onClick={() => {}}>
+                        <button onClick={() => { setShowModalCreate(true) }}>
                             +
                         </button>
                     </div>

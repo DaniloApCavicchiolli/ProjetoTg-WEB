@@ -50,8 +50,10 @@ const AuthProviderFornecedor = ({ children }) => {
   const createFornecedor = async (data) => {
     try {
       const resp = await api.post(`/fornecedor`, data);
-      toast.success("Criado com sucesso");
-      return resp.data;
+      if (resp?.status === 200) {
+        toast.success("Fornecedor criado com sucesso");
+        return resp.data;
+      }
     } catch (err) {
       console.log(err);
       toast.error(err?.response?.data?.error || "Ops... Ocorreu um erro");
@@ -69,7 +71,7 @@ const AuthProviderFornecedor = ({ children }) => {
           response.data?.fornecedor?.nivel,
           response.data?.fornecedor?.id
         );
-        
+
         toast.success("Bem Vindo!");
         return response.data;
       } else {
