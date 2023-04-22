@@ -4,6 +4,7 @@ import api from "../../../services/api";
 import FornecedoresRow from "../../../components/FornecedoresRow";
 import Pagination from '@mui/material/Pagination';
 import ModalCreate from "./ModalCreate";
+import ModalEdit from "./ModalEdit";
 
 import { Container, Content, Buscar } from "./styles";
 
@@ -19,6 +20,9 @@ function ListagemFornecedor() {
     const [registros, setRegistros] = useState();
 
     const [showModalCreate, setShowModalCreate] = useState(false);
+    const [showModalEdit, setShowModalEdit] = useState(false);
+
+    const [userSelected, setUserSelected] = useState(null);
 
     const loadingUsers = async () => {
         try {
@@ -53,6 +57,13 @@ function ListagemFornecedor() {
                     loading={loadingUsers}
                 />
             )}
+            {showModalEdit && (
+                <ModalEdit
+                    setShowModalEdit={setShowModalEdit}
+                    user={userSelected}
+                    loading={loadingUsers}
+                />
+            )}
             <Container>
                 <Content>
                     <div>
@@ -75,6 +86,8 @@ function ListagemFornecedor() {
                     <FornecedoresRow
                         key={index}
                         fornecedor={data}
+                        setUserSelected={setUserSelected}
+                        setShowModalEdit={setShowModalEdit}
                     />
                 ))}
                 <Pagination

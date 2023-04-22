@@ -37,8 +37,10 @@ const AuthProviderFornecedor = ({ children }) => {
   const updateFornecedor = async (data, id) => {
     try {
       const resp = await api.put(`/fornecedor/${id}`, data);
-      toast.success(resp?.data?.message);
-      return resp.data;
+      if (resp?.status === 200) {
+        toast.success(resp?.data?.message);
+        return resp.data;
+      }
     } catch (err) {
       console.log(err);
       toast.error(err?.response?.data?.error || "Ops... Ocorreu um erro");
