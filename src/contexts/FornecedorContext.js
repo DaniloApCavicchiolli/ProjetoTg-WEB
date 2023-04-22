@@ -22,12 +22,14 @@ const AuthProviderFornecedor = ({ children }) => {
   /* Função para delatar fornecedor */
   const deleteFornecedor = async (id) => {
     try {
-      const { data } = await api.delete(`/fornecedor/${id}`);
-      toast.success(data.message);
-      return data;
+      const resp = await api.delete(`/fornecedor/${id}`);
+      if (resp.status === 200) {
+        toast.success(resp.data.message);
+        return resp;
+      }
     } catch (err) {
       console.log(err);
-      toast.error(err?.response?.data?.error || "Ops... Ocorreu um erro");
+      toast.error(err?.response?.data?.error || "Não foi possível deletar o fornecedor");
 
       return false;
     }
@@ -43,7 +45,7 @@ const AuthProviderFornecedor = ({ children }) => {
       }
     } catch (err) {
       console.log(err);
-      toast.error(err?.response?.data?.error || "Ops... Ocorreu um erro");
+      toast.error(err?.response?.data?.error || "Não foi possível atualizar o fornecedor");
       return false;
     }
   };
@@ -58,7 +60,7 @@ const AuthProviderFornecedor = ({ children }) => {
       }
     } catch (err) {
       console.log(err);
-      toast.error(err?.response?.data?.error || "Ops... Ocorreu um erro");
+      toast.error(err?.response?.data?.error || "Não foi possível criar um novo fornecedor");
       return false;
     }
   };

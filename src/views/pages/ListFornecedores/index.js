@@ -5,6 +5,7 @@ import FornecedoresRow from "../../../components/FornecedoresRow";
 import Pagination from '@mui/material/Pagination';
 import ModalCreate from "./ModalCreate";
 import ModalEdit from "./ModalEdit";
+import ModalDelete from "./ModalDelete";
 
 import { Container, Content, Buscar } from "./styles";
 
@@ -21,6 +22,7 @@ function ListagemFornecedor() {
 
     const [showModalCreate, setShowModalCreate] = useState(false);
     const [showModalEdit, setShowModalEdit] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false);
 
     const [userSelected, setUserSelected] = useState(null);
 
@@ -64,6 +66,13 @@ function ListagemFornecedor() {
                     loading={loadingUsers}
                 />
             )}
+            {showModalDelete && (
+                <ModalDelete
+                    setShowModalDelete={setShowModalDelete}
+                    user={userSelected}
+                    loading={loadingUsers}
+                />
+            )}
             <Container>
                 <Content>
                     <div>
@@ -88,6 +97,7 @@ function ListagemFornecedor() {
                         fornecedor={data}
                         setUserSelected={setUserSelected}
                         setShowModalEdit={setShowModalEdit}
+                        setShowModalDelete={setShowModalDelete}
                     />
                 ))}
                 <Pagination

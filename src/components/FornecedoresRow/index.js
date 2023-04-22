@@ -2,7 +2,7 @@ import React from 'react'
 import { RiDeleteBin5Line, RiCheckboxCircleLine, RiEditBoxFill, RiCloseCircleLine } from "react-icons/ri";
 import { Container, Body, Buttons } from "./styles";
 
-const FornecedoresRow = ({ fornecedor, setShowModalEdit, setUserSelected }) => {
+const FornecedoresRow = ({ fornecedor, setShowModalEdit, setUserSelected, setShowModalDelete }) => {
     return (
         <Container>
             <header>
@@ -40,7 +40,7 @@ const FornecedoresRow = ({ fornecedor, setShowModalEdit, setUserSelected }) => {
                     <RiEditBoxFill size={30} />
                 </button>
                 <button style={{ color: "#F26689" }}
-                    onClick={() => { }}
+                    onClick={() => { setShowModalDelete(true); setUserSelected(fornecedor) }}
                 >
                     <RiDeleteBin5Line size={30} />
                 </button>
