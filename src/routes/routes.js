@@ -36,9 +36,16 @@ export const routes = {
         {
             path: "/dashboard",
             title: "Dashboard",
-            role: [999, 1],
+            role: [999],
             icon: RiDashboardLine,
             component: () => <div>Dashboard</div>,
+        },
+        {
+            path: "/dashboard/fornecedor",
+            title: "Dashboard Fornecedor",
+            role: [1],
+            icon: RiDashboardLine,
+            component: () => <div>DashboardFornecedor</div>,
         },
         {
             path: "/dashboard/users",

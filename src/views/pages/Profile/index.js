@@ -103,7 +103,7 @@ function Perfil() {
                                 />
                             </div>
                         </Column>
-                        <Column style={{ paddingLeft: "15px", paddingRight: "15px" }}>
+                        <Column style={{ paddingLeft: "55px" }}>
                             <div>
                                 <span>Cidade</span>
                                 <Input name="cidade" placeholder="cidade"

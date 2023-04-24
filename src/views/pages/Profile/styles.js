@@ -6,7 +6,7 @@ import fonts from "../../../styles/fonts";
 export const Container = styled.div`
   background: ${colors.white};
   width: 95%;
-  height: auto;
+  height: 100%;
   align-self: center;
   /* margin: 30px 0px; */
   border-radius: 10px;

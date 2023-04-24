@@ -37,6 +37,8 @@ function SignIn() {
             if (resp != false) {
                 if (resp.fornecedor.nivel === 999) {
                     History.push('/dashboard')
+                } else {
+                    History.push('/dashboard/fornecedor')
                 }
             }
 
