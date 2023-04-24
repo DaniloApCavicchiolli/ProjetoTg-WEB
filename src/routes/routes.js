@@ -3,13 +3,15 @@ import { Route, Redirect } from "react-router-dom";
 import {
     RiDashboardLine,
     RiTeamLine,
-    RiUserSharedLine
+    RiUserSharedLine,
+    RiProfileFill
 } from "react-icons/ri";
 
 import SignIn from "../views/pages/SignIn";
 import SignUp from "../views/pages/SignUp";
 import ListagemUser from "../views/pages/ListUsers";
 import ListagemFornecedor from "../views/pages/ListFornecedores";
+import Perfil from "../views/pages/Profile";
 import { getToken } from "../services/auth";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -34,7 +36,7 @@ export const routes = {
         {
             path: "/dashboard",
             title: "Dashboard",
-            role: [999],
+            role: [999, 1],
             icon: RiDashboardLine,
             component: () => <div>Dashboard</div>,
         },
@@ -52,6 +54,13 @@ export const routes = {
             icon: RiUserSharedLine,
             component: () => <ListagemFornecedor />,
         },
+        {
+            path: "/dashboard/profile",
+            title: "Perfil",
+            role: [999, 1],
+            icon: RiProfileFill,
+            component: () => <Perfil />,
+          },
     ],
     public: [
         {
