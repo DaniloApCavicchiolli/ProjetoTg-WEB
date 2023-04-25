@@ -4,7 +4,8 @@ import {
     RiDashboardLine,
     RiTeamLine,
     RiUserSharedLine,
-    RiProfileFill
+    RiProfileFill,
+    RiInboxArchiveLine
 } from "react-icons/ri";
 
 import SignIn from "../views/pages/SignIn";
@@ -12,6 +13,7 @@ import SignUp from "../views/pages/SignUp";
 import ListagemUser from "../views/pages/ListUsers";
 import ListagemFornecedor from "../views/pages/ListFornecedores";
 import Perfil from "../views/pages/Profile";
+import CategoriaProduto from "../views/pages/CategoriaProduto";
 import { getToken } from "../services/auth";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -67,6 +69,13 @@ export const routes = {
             role: [999, 1],
             icon: RiProfileFill,
             component: () => <Perfil />,
+          },
+          {
+            path: "/dashboard/categoriaProduto",
+            title: "Categorias e Prosutos",
+            role: [999],
+            icon: RiInboxArchiveLine,
+            component: () => <CategoriaProduto />,
           },
     ],
     public: [
