@@ -37,12 +37,13 @@ const ProviderCategoria = ({ children }) => {
     const updateCategoria = async (data, id) => {
         try {
             const resp = await api.put(`/categoria/${id}`, data);
-            toast.success(resp?.data?.message);
+            resp?.status === 200 ?
+                toast.success("Editado com sucesso!") :
+                toast.error(resp?.data?.message)
             return resp.data;
         } catch (err) {
             console.log(err);
-            toast.error(err?.response?.data?.error || "Ops... Ocorreu um erro");
-
+            toast.error(err?.response?.data?.message || "Não foi possível editar a categoria");
             return false;
         }
     };

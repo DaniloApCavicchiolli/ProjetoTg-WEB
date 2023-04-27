@@ -5,6 +5,7 @@ import Pagination from '@mui/material/Pagination';
 
 import CategoriasRow from "../../../components/CategoriasRow";
 import ModalCreate from "./ModaisCategoria/ModalCreate";
+import ModalEdit from "./ModaisCategoria/ModalEdit";
 
 import ProdutosRow from "../../../components/ProdutosRow";
 
@@ -74,6 +75,14 @@ function CategoriaProduto() {
                     loading={loadingCategorias}
                 />)
             }
+            {botao === 1 &&
+                showModalEdit && (
+                    <ModalEdit
+                        setShowModalEdit={setShowModalEdit}
+                        user={userSelected}
+                        loading={loadingCategorias}
+                    />
+                )}
             <Container>
                 <Header>
                     <div>
@@ -96,6 +105,8 @@ function CategoriaProduto() {
                         key={index}
                         categorias={data}
                         setBotao={setBotao}
+                        setUserSelected={setUserSelected}
+                        setShowModalEdit={setShowModalEdit}
                     />
                 ))}
                 <Pagination
