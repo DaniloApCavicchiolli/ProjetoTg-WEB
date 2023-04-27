@@ -3,7 +3,7 @@ import { RiDeleteBin5Line, RiEditBoxFill } from "react-icons/ri";
 
 import { Container, Body, Buttons } from './styles';
 
-const CategoriasRow = ({ categorias, setUserSelected, setShowModalEdit, setBotao }) => {
+const CategoriasRow = ({ categorias, setUserSelected, setShowModalEdit, setBotao, setShowModalDelete }) => {
 
     // const produtos = categorias.fk_produtos;
     // const insumos = categorias.fk_insumos;
@@ -36,7 +36,7 @@ const CategoriasRow = ({ categorias, setUserSelected, setShowModalEdit, setBotao
                         <RiEditBoxFill size={30} />
                     </button>
                     <button style={{ color: "#F26689" }}
-                        onClick={() => { }}
+                        onClick={() => { setShowModalDelete(true); setUserSelected(categorias); setBotao(1) }}
                     >
                         <RiDeleteBin5Line size={30} />
                     </button>

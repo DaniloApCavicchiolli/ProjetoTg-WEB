@@ -6,6 +6,7 @@ import Pagination from '@mui/material/Pagination';
 import CategoriasRow from "../../../components/CategoriasRow";
 import ModalCreate from "./ModaisCategoria/ModalCreate";
 import ModalEdit from "./ModaisCategoria/ModalEdit";
+import ModalDelete from "./ModaisCategoria/ModalDelete";
 
 import ProdutosRow from "../../../components/ProdutosRow";
 
@@ -83,6 +84,14 @@ function CategoriaProduto() {
                         loading={loadingCategorias}
                     />
                 )}
+            {botao === 1 &&
+                showModalDelete && (
+                    <ModalDelete
+                        setShowModalDelete={setShowModalDelete}
+                        user={userSelected}
+                        loading={loadingCategorias}
+                    />
+                )}
             <Container>
                 <Header>
                     <div>
@@ -95,7 +104,7 @@ function CategoriaProduto() {
                         </div>
                     </Buscar>
                     <div>
-                        <button onClick={() => { setShowModalCreate(!showModalCreate); setBotao(1)  }}>
+                        <button onClick={() => { setShowModalCreate(!showModalCreate); setBotao(1) }}>
                             +
                         </button>
                     </div>
@@ -107,6 +116,7 @@ function CategoriaProduto() {
                         setBotao={setBotao}
                         setUserSelected={setUserSelected}
                         setShowModalEdit={setShowModalEdit}
+                        setShowModalDelete={setShowModalDelete}
                     />
                 ))}
                 <Pagination

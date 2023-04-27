@@ -22,12 +22,14 @@ const ProviderCategoria = ({ children }) => {
     /* Função para delatar categoria */
     const deleteCategoria = async (id) => {
         try {
-            const { data } = await api.delete(`/categoria/${id}`);
-            toast.success(data.message);
-            return data;
+            const resp = await api.delete(`/categoria/${id}`);
+            resp?.status === 200 ?
+                toast.success("Deletado com sucesso!") :
+                toast.error(resp?.data?.message)
+            return resp.data;
         } catch (err) {
             console.log(err);
-            toast.error(err?.response?.data?.error || "Ops... Ocorreu um erro");
+            toast.error(err?.response?.data?.message || "Não foi possível deletar a categoria");
 
             return false;
         }
