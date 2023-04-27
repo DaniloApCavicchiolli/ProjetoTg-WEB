@@ -50,18 +50,25 @@ export const routes = {
             component: () => <div>DashboardFornecedor</div>,
         },
         {
-            path: "/dashboard/users",
+            path: "/dashboard/listusers",
             title: "Usuários",
             role: [999],
             icon: RiTeamLine,
             component: () => <ListagemUser />,
         },
         {
-            path: "/dashboard/fornecedor",
+            path: "/dashboard/listfornecedor",
             title: "Fornecedores",
             role: [999],
             icon: RiUserSharedLine,
             component: () => <ListagemFornecedor />,
+        },
+        {
+            path: "/dashboard/categoriaProduto",
+            title: "Categorias e Produtos",
+            role: [999],
+            icon: RiInboxArchiveLine,
+            component: () => <CategoriaProduto />,
         },
         {
             path: "/dashboard/profile",
@@ -69,14 +76,7 @@ export const routes = {
             role: [999, 1],
             icon: RiProfileFill,
             component: () => <Perfil />,
-          },
-          {
-            path: "/dashboard/categoriaProduto",
-            title: "Categorias e Prosutos",
-            role: [999],
-            icon: RiInboxArchiveLine,
-            component: () => <CategoriaProduto />,
-          },
+        },
     ],
     public: [
         {

@@ -5,15 +5,15 @@ import { Container, Body, Buttons } from './styles';
 
 const CategoriasRow = ({ categorias }) => {
 
-    const produtos = categorias.fk_produtos;
-    const insumos = categorias.fk_insumos;
+    // const produtos = categorias.fk_produtos;
+    // const insumos = categorias.fk_insumos;
 
-    const produto = produtos?.map((data) => {
-        return data.nome
-    });
-    const insumo = insumos?.map((data) => {
-        return data.nome
-    });
+    // const produto = produtos?.map((data) => {
+    //     return data.nome
+    // });
+    // const insumo = insumos?.map((data) => {
+    //     return data.nome
+    // });
 
     return (
         <>
@@ -22,11 +22,13 @@ const CategoriasRow = ({ categorias }) => {
                     <img src='https://picsum.photos/200' />
                 </Body> */}
                 <header>
-                    <p id='p'>{categorias.nome}</p>
-                    <p>Produtos Vinculados:</p>
+                    <p>Categoria</p>
+                    <span>{categorias.nome}</span>
                 </header>
                 <Body style={{ textAlign: 'start' }}>
-                    <span>{produto.join(', ')} {!produto.length == 0 && '/'} {insumo.join(', ')}</span>
+                    <p>Produtos Vinculados</p>
+                    <span>Produtos</span>
+                    {/* <span>{produto.join(', ')} {!produto.length == 0 && '/'} {insumo.join(', ')}</span> */}
                 </Body>
                 <Buttons>
                     <button style={{ color: "#F89747" }}

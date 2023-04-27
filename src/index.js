@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./contexts/UserContext";
 import { AuthProviderFornecedor } from "./contexts/FornecedorContext";
+import { ProviderCategoria } from './contexts/CategoriaContext';
 // import App from './views/pages/ListFornecedores/Perfil';
 
 ReactDOM.render(
@@ -13,7 +14,9 @@ ReactDOM.render(
     <ToastContainer />
     <AuthProvider>
       <AuthProviderFornecedor>
-        <App />
+        <ProviderCategoria>
+          <App />
+        </ProviderCategoria>
       </AuthProviderFornecedor>
     </AuthProvider>
   </React.StrictMode>,

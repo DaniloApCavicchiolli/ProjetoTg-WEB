@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import api from "../../../services/api";
 import { RiSearchLine } from "react-icons/ri";
 import Pagination from '@mui/material/Pagination';
+
 import CategoriasRow from "../../../components/CategoriasRow";
+import ModalCreate from "./ModaisCategoria/ModalCreate";
+
 import ProdutosRow from "../../../components/ProdutosRow";
 
 import { Container, Content, Header, Buscar } from "./styles";
@@ -10,21 +13,24 @@ import { Container, Content, Header, Buscar } from "./styles";
 function CategoriaProduto() {
 
     const [botao, setBotao] = useState();
+    const [showModalCreate, setShowModalCreate] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [showModalEdit, setShowModalEdit] = useState(false);
+    const [userSelected, setUserSelected] = useState(null);
 
     const [categorias, setCategorias] = useState([]);
     const [categoriasBusca, setCategoriasBusca] = useState([]);
-
     const [pageCategorias, setPagesCategorias] = useState(0);
     const [totalPagesCategorias, setTotalPagesCategorias] = useState();
     const [pagesBuscaCategorias, setPagesBuscaCategorias] = useState(0);
     const [totalPagesBuscaCategoria, setTotalPagesBuscaCategorias] = useState();
 
-    const [produtos, setProdutos] = useState([]);
-    const [produtoBusca, setProdutoBusca] = useState([]);
-    const [pageProdutos, setPageProdutos] = useState(0);
-    const [totalPagesProdutos, setTotalPagesProdutos] = useState();
-    const [pagesBuscaProduto, setPagesBuscaProdutos] = useState(0);
-    const [totalPagesBuscaProduto, setTotalPagesBuscaProduto] = useState();
+    // const [produtos, setProdutos] = useState([]);
+    // const [produtoBusca, setProdutoBusca] = useState([]);
+    // const [pageProdutos, setPageProdutos] = useState(0);
+    // const [totalPagesProdutos, setTotalPagesProdutos] = useState();
+    // const [pagesBuscaProduto, setPagesBuscaProdutos] = useState(0);
+    // const [totalPagesBuscaProduto, setTotalPagesBuscaProduto] = useState();
 
     /*==================== Funções para categorias ====================*/
     const loadingCategorias = async () => {
@@ -50,17 +56,24 @@ function CategoriaProduto() {
             setPagesCategorias(valorPage)
     };
 
-    const handleChangeProdutos = (event, value) => {
-        let valorPage = value - 1
-        produtoBusca.length > 0
-            ?
-            setPagesBuscaProdutos(valorPage)
-            :
-            setPageProdutos(valorPage)
-    };
+    // const handleChangeProdutos = (event, value) => {
+    //     let valorPage = value - 1
+    //     produtoBusca.length > 0
+    //         ?
+    //         setPagesBuscaProdutos(valorPage)
+    //         :
+    //         setPageProdutos(valorPage)
+    // };
 
     return (
         <>
+            {botao === 1 &&
+                showModalCreate &&
+                (<ModalCreate
+                    setShowModalCreate={setShowModalCreate}
+                    loading={loadingCategorias}
+                />)
+            }
             <Container>
                 <Header>
                     <div>
@@ -73,7 +86,7 @@ function CategoriaProduto() {
                         </div>
                     </Buscar>
                     <div>
-                        <button onClick={() => { }}>
+                        <button onClick={() => { setShowModalCreate(!showModalCreate); setBotao(1)  }}>
                             +
                         </button>
                     </div>
@@ -97,7 +110,7 @@ function CategoriaProduto() {
                         marginLeft: '92px'
                     }}
                 />
-                <Content>
+                {/* <Content>
                     <div>
                         <Header>
                             <div>
@@ -143,7 +156,7 @@ function CategoriaProduto() {
                             }}
                         />
                     </div>
-                </Content>
+                </Content> */}
             </Container>
         </>
     );
