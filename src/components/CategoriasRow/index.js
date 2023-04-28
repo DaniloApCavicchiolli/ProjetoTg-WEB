@@ -4,16 +4,10 @@ import { RiDeleteBin5Line, RiEditBoxFill } from "react-icons/ri";
 import { Container, Body, Buttons } from './styles';
 
 const CategoriasRow = ({ categorias, setUserSelected, setShowModalEdit, setBotao, setShowModalDelete }) => {
-
-    // const produtos = categorias.fk_produtos;
-    // const insumos = categorias.fk_insumos;
-
-    // const produto = produtos?.map((data) => {
-    //     return data.nome
-    // });
-    // const insumo = insumos?.map((data) => {
-    //     return data.nome
-    // });
+    const produtos = categorias.fk_produtos;
+    const produto = produtos?.map((data) => {
+        return data.nome
+    });
 
     return (
         <>
@@ -27,8 +21,7 @@ const CategoriasRow = ({ categorias, setUserSelected, setShowModalEdit, setBotao
                 </header>
                 <Body style={{ textAlign: 'start' }}>
                     <p>Produtos Vinculados</p>
-                    <span>Produtos</span>
-                    {/* <span>{produto.join(', ')} {!produto.length == 0 && '/'} {insumo.join(', ')}</span> */}
+                    <span>{produto.join(', ')} {!produto.length === 0 && '/'}</span>
                 </Body>
                 <Buttons>
                     <button style={{ color: "#F89747" }}

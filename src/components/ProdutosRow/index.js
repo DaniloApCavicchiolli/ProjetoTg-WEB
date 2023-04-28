@@ -3,11 +3,11 @@ import { RiDeleteBin5Line, RiEditBoxFill } from "react-icons/ri";
 
 import { Container, Body, Buttons } from './styles';
 
-const ProdutosRow = ({ produtos, setShowModalDelete, setUserSelected, setBotao }) => {
-    // const categorias = produtos.fk_categoria;
-    // const categoria = categorias.map((data) => {
-    //     return data.nome
-    // });
+const ProdutosRow = ({ produtos, setShowModalDelete, setShowModalEdit, setUserSelected, setBotao }) => {
+    const categorias = produtos.fk_categoria;
+    const categoria = categorias.map((data) => {
+        return data.nome
+    });
 
     return (
         <>
@@ -24,15 +24,15 @@ const ProdutosRow = ({ produtos, setShowModalDelete, setUserSelected, setBotao }
                     <span>{produtos.marca}</span>
                 </Body>
                 <Body>
-                    <p>Categoria</p>
-                    {/* <span>{categoria.join(', ')}</span> */}
+                    <p>Categorias Vinculadas</p>
+                    <span>{categoria?.join(', ')}</span>
                 </Body>
                 {/* <Body>
                     <button>Ver mais detalhes</button>
                 </Body> */}
                 <Buttons>
                     <button style={{ color: "#F89747" }}
-                        onClick={() => { }}>
+                        onClick={() => { setShowModalEdit(true); setUserSelected(produtos); setBotao(2) }}>
                         <RiEditBoxFill size={30} />
                     </button>
                     <button style={{ color: "#F26689" }}

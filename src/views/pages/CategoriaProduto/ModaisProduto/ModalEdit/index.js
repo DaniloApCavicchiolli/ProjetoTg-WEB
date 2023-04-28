@@ -1,8 +1,8 @@
 import React, { useRef, useContext, useState, useEffect } from "react";
 import * as Yup from "yup";
-import { ContextProduto } from "../../../../../contexts/ProdutoContext";
 import Button from "../../../../../components/Button";
 import Input from "../../../../../components/Input";
+import { ContextProduto } from "../../../../../contexts/ProdutoContext";
 import getValidationErrors from "../../../../../utils/getValidationErrors";
 import api from "../../../../../services/api";
 import Select from "react-select";
@@ -10,9 +10,9 @@ import { toast } from 'react-toastify';
 
 import { Container, Forms, Body, Content, Column, Image } from "./styles";
 
-function ModalCreateProduto({ setShowModalCreate, loading }) {
+function ModalEditProduto({ setShowModalEdit, user, loading }) {
     const formRef = useRef(null);
-    const { createProduto } = useContext(ContextProduto);
+    const { updateProduto } = useContext(ContextProduto);
 
     const [catego, setCatego] = useState([]);
     const [selectedCategorias, setSelectedCategorias] = useState([]);
@@ -22,11 +22,10 @@ function ModalCreateProduto({ setShowModalCreate, loading }) {
             formRef.current?.setErrors({});
             const schema = Yup.object().shape({
                 nome: Yup.string()
-                    .required("Nome Obrigatório!"),
+                    .required("Nome Obrigatório"),
                 marca: Yup.string()
                     .required("Marca obrigatória!")
             });
-
             await schema.validate(data, {
                 abortEarly: false,
             });
@@ -35,10 +34,10 @@ function ModalCreateProduto({ setShowModalCreate, loading }) {
             // data.categorias = data.categorias.split(/(,[ ]?)/g);
             data.categorias = selectedCategorias?.map(item => item.label);
 
-            if (data.categorias.length !== 0) {
-                await createProduto(data);
+            if (data.categorias.length != 0) {
+                await updateProduto(data, user?.id);
                 await loading();
-                setShowModalCreate(false);
+                setShowModalEdit(false);
                 window.location.reload();
             } else {
                 toast.error("Selecione uma Categoria");
@@ -46,7 +45,6 @@ function ModalCreateProduto({ setShowModalCreate, loading }) {
             }
 
         } catch (err) {
-            console.log(err);
             const errors = getValidationErrors(err);
             formRef.current?.setErrors(errors);
         }
@@ -55,9 +53,16 @@ function ModalCreateProduto({ setShowModalCreate, loading }) {
     const loadingCategorias = async () => {
         try {
             const { data } = await api.get('/categoria_showAll');
+            const categoria = user.fk_categoria;
+
+            setSelectedCategorias(categoria.map((data) => {
+                return { value: data.id, label: data.nome }
+            }));
+
             setCatego(data?.map(item => ({
                 value: item.id, label: item.nome
             })));
+
         } catch (err) {
             console.log(err);
         }
@@ -72,15 +77,15 @@ function ModalCreateProduto({ setShowModalCreate, loading }) {
             <Body>
                 <div>
                     <Image style={{ background: 'transparent' }} />
-                    <h1>Adiciona Produto</h1>
+                    <h1>Editar Produto</h1>
                     <Image />
                 </div>
                 <p>Insira os dados referentes ao produto</p>
-                <Forms ref={formRef} onSubmit={handleSubmit}>
+                <Forms ref={formRef} onSubmit={handleSubmit} initialData={{ ...user }}>
                     <Content>
                         <Column>
                             <div style={{ width: '90%', paddingRight: '10px' }}>
-                                <span>Nome Comercial</span>
+                                <span>Nome</span>
                                 <Input name="nome" placeholder="Nome do Produto"
                                 />
                             </div>
@@ -99,6 +104,7 @@ function ModalCreateProduto({ setShowModalCreate, loading }) {
                                 <Select
                                     isMulti={true}
                                     onChange={value => setSelectedCategorias(value)}
+                                    value={selectedCategorias}
                                     options={catego}
                                     placeholder='Selecione'
                                     maxMenuHeight={150}
@@ -115,13 +121,11 @@ function ModalCreateProduto({ setShowModalCreate, loading }) {
                             </div>
                         </Column>
                     </Content>
-                    <div style={{ backgroundColor: "#FFF" }}>
-                        <Button style={{ fontSize: '18px', width: "30%" }}>
-                            Salvar
-                        </Button>
+                    <div style={{ backgroundColor: "#FFF", }}>
+                        <Button style={{ fontSize: '18px', width: "30%" }}>Salvar</Button>
                     </div>
                 </Forms>
-                <a href="#" onClick={() => setShowModalCreate(false)}>
+                <a href="#" onClick={() => setShowModalEdit(false)}>
                     Voltar
                 </a>
             </Body>
@@ -129,4 +133,4 @@ function ModalCreateProduto({ setShowModalCreate, loading }) {
     );
 }
 
-export default ModalCreateProduto;
+export default ModalEditProduto;

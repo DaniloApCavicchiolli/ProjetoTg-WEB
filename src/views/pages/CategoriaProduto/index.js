@@ -11,6 +11,7 @@ import ModalDelete from "./ModaisCategoria/ModalDelete";
 import ProdutosRow from "../../../components/ProdutosRow";
 import ModalCreateProduto from "./ModaisProduto/ModalCreate";
 import ModalDeleteProduto from "./ModaisProduto/ModalDelete";
+import ModalEditProduto from "./ModaisProduto/ModalEdit";
 
 import { Container, Content, Header, Buscar } from "./styles";
 
@@ -121,6 +122,14 @@ function CategoriaProduto() {
                         loading={loadingProdutos}
                     />
                 )}
+            {botao === 2 &&
+                showModalEdit && (
+                    <ModalEditProduto
+                        setShowModalEdit={setShowModalEdit}
+                        user={userSelected}
+                        loading={loadingProdutos}
+                    />
+                )}
             <Container>
                 <Header>
                     <div>
@@ -193,6 +202,7 @@ function CategoriaProduto() {
                                 produtos={data}
                                 setBotao={setBotao}
                                 setUserSelected={setUserSelected}
+                                setShowModalEdit={setShowModalEdit}
                                 setShowModalDelete={setShowModalDelete}
                             />
                         ))}
