@@ -30,7 +30,6 @@ const ProviderCategoria = ({ children }) => {
         } catch (err) {
             console.log(err);
             toast.error(err?.response?.data?.message || "Não foi possível deletar a categoria");
-
             return false;
         }
     };

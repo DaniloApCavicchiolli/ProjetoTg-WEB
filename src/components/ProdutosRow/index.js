@@ -4,10 +4,10 @@ import { RiDeleteBin5Line, RiEditBoxFill } from "react-icons/ri";
 import { Container, Body, Buttons } from './styles';
 
 const ProdutosRow = ({ produtos }) => {
-    const categorias = produtos.fk_categoria;
-    const categoria = categorias.map((data) => {
-        return data.nome
-    });
+    // const categorias = produtos.fk_categoria;
+    // const categoria = categorias.map((data) => {
+    //     return data.nome
+    // });
 
     return (
         <>
@@ -16,12 +16,16 @@ const ProdutosRow = ({ produtos }) => {
                     <img src='https://picsum.photos/200' />
                 </Body> */}
                 <header>
-                    <p>Nome comercial</p>
+                    <p>Produto</p>
                     <span>{produtos.nome}</span>
                 </header>
                 <Body>
+                    <p>Marca</p>
+                    <span>{produtos.marca}</span>
+                </Body>
+                <Body>
                     <p>Categoria</p>
-                    <span>{categoria.join(', ')}</span>
+                    {/* <span>{categoria.join(', ')}</span> */}
                 </Body>
                 {/* <Body>
                     <button>Ver mais detalhes</button>

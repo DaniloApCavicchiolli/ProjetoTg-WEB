@@ -4,7 +4,6 @@ import Button from "../../../../../components/Button";
 import { ContextCategoria } from "../../../../../contexts/CategoriaContext";
 
 import { Container, Image, Content, Body, ButtonSecondary } from "./styles";
-import colors from "../../../../../styles/colors";
 
 function ModalDelete({ setShowModalDelete, user, loading }) {
 
