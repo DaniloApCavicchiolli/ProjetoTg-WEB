@@ -101,14 +101,14 @@ function ModalCreateProduto({ setShowModalCreate, loading }) {
                                     onChange={value => setSelectedCategorias(value)}
                                     options={catego}
                                     placeholder='Selecione'
-                                    maxMenuHeight={160}
+                                    maxMenuHeight={150}
                                     menuPlacement='auto'
                                     theme={(theme) => ({
                                         ...theme,
                                         colors: {
                                             ...theme.colors,
-                                            primary25: 'rgb(12, 157, 164, 0.4)',
-                                            primary: '#20655F',
+                                            primary25: 'rgb(122, 145, 134, 0.4)',
+                                            primary: '#7a9186',
                                         },
                                     })}
                                 />
