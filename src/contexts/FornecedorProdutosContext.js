@@ -18,10 +18,24 @@ const ProviderFornecedorProduto = ({ children }) => {
         }
     };
 
+    /* Mostrar todos os Produtos não selecionados pelo Fornecedor */
+    const loadFornecedorProdutosNotSelected = async (setProdutos, setTotalPageProdutos, setRegistrosProdutos) => {
+        try {
+            const id = getId();
+            const { data } = await api.get(`/fornecedor_produtos_notSelected/${id}`);
+            setProdutos(data.content);
+            setTotalPageProdutos(data.totalPages);
+            setRegistrosProdutos(data.registros);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <ContextFornecedorProduto.Provider
             value={{
                 loadFornecedorProdutos,
+                loadFornecedorProdutosNotSelected
             }}
         >
             {children}
