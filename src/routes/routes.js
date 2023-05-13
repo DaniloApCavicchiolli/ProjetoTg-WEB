@@ -15,6 +15,7 @@ import ListagemUser from "../views/pages/ListUsers";
 import ListagemFornecedor from "../views/pages/ListFornecedores";
 import Perfil from "../views/pages/Profile";
 import CategoriaProduto from "../views/pages/CategoriaProduto";
+import FornecedorProdutos from "../views/pages/FornecedorProdutos";
 import { getToken } from "../services/auth";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -23,7 +24,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
             {...{ rest }}
             render={
                 (props) =>
-                    getToken() != null ? (
+                    getToken() !== null ? (
                         <Component {...{ props }} />
                     ) : (
                         <Redirect to={{ pathname: "/", state: { from: props.location } }} />
@@ -42,13 +43,6 @@ export const routes = {
             role: [999],
             icon: RiDashboardLine,
             component: () => <div>Dashboard</div>,
-        },
-        {
-            path: "/dashboard/fornecedor",
-            title: "Dashboard Fornecedor",
-            role: [1],
-            icon: RiDashboardLine,
-            component: () => <div>DashboardFornecedor</div>,
         },
         {
             path: "/dashboard/listusers",
@@ -71,6 +65,20 @@ export const routes = {
             icon: RiInboxArchiveLine,
             component: () => <CategoriaProduto />,
         },
+        {
+            path: "/dashboard/fornecedor",
+            title: "Dashboard Fornecedor",
+            role: [1],
+            icon: RiDashboardLine,
+            component: () => <div>DashboardFornecedor</div>,
+        },
+        {
+            path: "/dashboard/fornecedorProdutos",
+            title: "Produtos que Trabalha",
+            role: [1],
+            icon: RiInboxArchiveLine,
+            component: () => <FornecedorProdutos />,
+          },
         {
             path: "/dashboard/profile",
             title: "Perfil",

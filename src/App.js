@@ -5,6 +5,7 @@ import { AuthProvider } from "./contexts/UserContext";
 import { AuthProviderFornecedor } from "./contexts/FornecedorContext";
 import { ProviderCategoria } from "./contexts/CategoriaContext";
 import { ProviderProduto } from "./contexts/ProdutoContext";
+import { ProviderFornecedorProduto } from "./contexts/FornecedorProdutosContext";
 import { routes, PrivateRoute } from "./routes/routes";
 
 import Dashboard from "./views/layouts/Dashboard";
@@ -13,27 +14,29 @@ function App() {
 
   return (
     <>
-      <ProviderProduto>
-        <ProviderCategoria>
-          <AuthProviderFornecedor>
-            <AuthProvider>
-              <Router>
-                <Switch>
-                  {routes?.public?.map((route, index) => (
-                    <Route
-                      key={index}
-                      path={route.path}
-                      exact
-                      component={route.component}
-                    />
-                  ))}
-                  <PrivateRoute path="/dashboard" component={Dashboard} />
-                </Switch>
-              </Router>
-            </AuthProvider>
-          </AuthProviderFornecedor>
-        </ProviderCategoria>
-      </ProviderProduto>
+      <ProviderFornecedorProduto>
+        <ProviderProduto>
+          <ProviderCategoria>
+            <AuthProviderFornecedor>
+              <AuthProvider>
+                <Router>
+                  <Switch>
+                    {routes?.public?.map((route, index) => (
+                      <Route
+                        key={index}
+                        path={route.path}
+                        exact
+                        component={route.component}
+                      />
+                    ))}
+                    <PrivateRoute path="/dashboard" component={Dashboard} />
+                  </Switch>
+                </Router>
+              </AuthProvider>
+            </AuthProviderFornecedor>
+          </ProviderCategoria>
+        </ProviderProduto>
+      </ProviderFornecedorProduto>
     </>
   );
 }

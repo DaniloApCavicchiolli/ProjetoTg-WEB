@@ -8,6 +8,7 @@ import { AuthProvider } from "./contexts/UserContext";
 import { AuthProviderFornecedor } from "./contexts/FornecedorContext";
 import { ProviderCategoria } from './contexts/CategoriaContext';
 import { ProviderProduto } from './contexts/ProdutoContext';
+import { ProviderFornecedorProduto } from './contexts/FornecedorProdutosContext';
 // import App from './views/pages/ListFornecedores/Perfil';
 
 ReactDOM.render(
@@ -17,7 +18,9 @@ ReactDOM.render(
       <AuthProviderFornecedor>
         <ProviderCategoria>
           <ProviderProduto>
-            <App />
+            <ProviderFornecedorProduto>
+              <App />
+            </ProviderFornecedorProduto>
           </ProviderProduto>
         </ProviderCategoria>
       </AuthProviderFornecedor>

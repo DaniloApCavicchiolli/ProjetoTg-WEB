@@ -73,22 +73,12 @@ function Header({ name }) {
           <div id="icon"><RiMenu2Line size={20} /></div>
           <b>{name}</b>
         </NamePage>
-        {/* {location.pathname !== "/dashboard" &&
-          location.pathname !== "/dashboard/users" &&
-          location.pathname !== "/dashboard/fornecedor" &&
-          location.pathname !== "/dashboard/profile" &&
-          (<Buscar>
-            <button type="button" onClick={() => { }}>
-              <RiSearchLine size={20} />
-            </button>
-            <input name="buscar" placeholder="buscar" />
-          </Buscar>)} */}
-
       </Content>
       {
         location.pathname !== "/dashboard/users" &&
         location.pathname !== "/dashboard/fornecedor" &&
         location.pathname !== "/dashboard/profile" &&
+        location.pathname !== "/dashboard/fornecedorProdutos" &&
         (<Cards>
           <div style={{ backgroundColor: '#626679' }}>
             <span>Novas Solicitações</span>
