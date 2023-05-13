@@ -5,7 +5,8 @@ import {
     RiTeamLine,
     RiUserSharedLine,
     RiProfileFill,
-    RiInboxArchiveLine
+    RiInboxArchiveLine,
+    RiUser2Fill
 } from "react-icons/ri";
 
 import SignIn from "../views/pages/SignIn";
@@ -60,7 +61,7 @@ export const routes = {
             path: "/dashboard/listfornecedor",
             title: "Fornecedores",
             role: [999],
-            icon: RiUserSharedLine,
+            icon: RiUser2Fill,
             component: () => <ListagemFornecedor />,
         },
         {

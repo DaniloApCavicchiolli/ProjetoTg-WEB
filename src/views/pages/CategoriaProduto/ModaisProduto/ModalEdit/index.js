@@ -36,8 +36,8 @@ function ModalEditProduto({ setShowModalEdit, user, loading }) {
 
             if (data.categorias.length != 0) {
                 await updateProduto(data, user?.id);
-                await loading();
                 setShowModalEdit(false);
+                loading();
                 window.location.reload();
             } else {
                 toast.error("Selecione uma Categoria");
@@ -55,7 +55,7 @@ function ModalEditProduto({ setShowModalEdit, user, loading }) {
             const { data } = await api.get('/categoria_showAll');
             const categoria = user.fk_categoria;
 
-            setSelectedCategorias(categoria.map((data) => {
+            setSelectedCategorias(categoria?.map((data) => {
                 return { value: data.id, label: data.nome }
             }));
 
