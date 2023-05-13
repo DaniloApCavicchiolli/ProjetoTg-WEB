@@ -3,6 +3,7 @@
 export default {
     primary: "#5f2598",
     secondary: "#7a9186",
+    secondaryRGB: "rgb(122, 145, 134, 0.3)",
     textLabel: "#af92cb",
     background: "#EFF1F9",
     linck: "##8000ff",

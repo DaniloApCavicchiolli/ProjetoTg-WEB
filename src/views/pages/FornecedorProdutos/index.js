@@ -10,7 +10,7 @@ import { Container, Content, Tabela, Buscar } from "./styles";
 import colors from "../../../styles/colors";
 
 function FornecedorProdutos() {
-    const { loadFornecedorProdutos, loadFornecedorProdutosNotSelected } = useContext(ContextFornecedorProduto);
+    const { loadFornecedorProdutos, loadFornecedorProdutosNotSelected, createFornecedorProduto } = useContext(ContextFornecedorProduto);
 
     const [botao, setBotao] = useState(1);
     const [buscar, setBuscar] = useState();
@@ -23,20 +23,29 @@ function FornecedorProdutos() {
     const [registrosProdutos, setRegistrosProdutos] = useState();
     const [pageProdutos, setPageProdutos] = useState(0);
 
+    const [selected, setSelected] = useState([]);
+
     useEffect(() => {
         loadFornecedorProdutos(setFornecedorProdutos);
         loadFornecedorProdutosNotSelected(setProdutos, setTotalPageProdutos, setRegistrosProdutos);
-    }, []);
+    }, [pageProdutos]);
 
 
     const produtosOfFornecedor = [...fornecedorProdutos]
         .slice(fornecedorProdutosPage * 5, fornecedorProdutosPage * 5 + 5);
     const toalPages = Math.ceil([...fornecedorProdutos].length / 5);
 
-    // const handleChangeProdutos = (event, value) => {
-    //     let valorPage = value - 1
-    //     setPageProdutos(valorPage);
-    // };
+    const handleSubmitProduto = async () => {
+        try {
+            if (selected.length > 0) {
+                await createFornecedorProduto(selected)
+            }
+            await loadFornecedorProdutos(setFornecedorProdutos);
+            setBotao(1);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <>
@@ -56,8 +65,11 @@ function FornecedorProdutos() {
                             }}>
                             Produtos que Trabalha
                         </div>
-                        {" | "}
-                        <div id="p" type="button" onClick={() => { setBotao(2) }}
+                        {" || "}
+                        <div id="p" type="button" onClick={() => {
+                            setBotao(2);
+                            loadFornecedorProdutosNotSelected(setProdutos, setTotalPageProdutos, setRegistrosProdutos)
+                        }}
                             style={{
                                 backgroundColor: botao === 2 ? `${colors.primary}` : `${colors.lightGray}`,
                                 color: botao === 2 ? `${colors.white}` : `${colors.darkGrayishBlue}`
@@ -71,6 +83,19 @@ function FornecedorProdutos() {
                         <div>
                             {botao === 1 && <h1>Produtos que trabalha</h1>}
                             {botao === 2 && <h1>Lista de Produtos</h1>}
+                        </div>
+                        <div>
+                            <button
+                                style={{
+                                    boxShadow: botao === 1 && 'none',
+                                    backgroundColor: botao === 1 && 'transparent',
+                                    cursor: botao !== 1 && "pointer"
+                                }}
+                                onClick={botao === 2 && handleSubmitProduto}
+                                disabled={botao === 1 && true}
+                            >
+                                {botao === 2 && 'Adicionar Produtos'}
+                            </button>
                         </div>
                     </div>
                     <div>
@@ -105,6 +130,8 @@ function FornecedorProdutos() {
                         <ProdutosRow
                             key={data.id}
                             produtos={data}
+                            setSelected={setSelected}
+                            selected={selected}
                         />
                     ))}
                 {botao === 2 &&

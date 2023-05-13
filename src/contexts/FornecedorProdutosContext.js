@@ -31,11 +31,30 @@ const ProviderFornecedorProduto = ({ children }) => {
         }
     };
 
+    /* Função para registrar produtos para um fornecedor */
+    const createFornecedorProduto = async (selected) => {
+        try {
+            const id = getId();
+            const response = await api.post(`/fornecedor_produtos/${id}`, { produto_id: selected });
+            if (response?.status === 200) {
+                toast.success("Cadastrado com sucesso!")
+                return response.data;
+            }
+            toast.error(response?.data?.message)
+            return false;
+        } catch (err) {
+            console.log(err);
+            toast.error(err?.response?.data?.message || 'Não foi possível registrar o Produto');
+            return false;
+        }
+    };
+
     return (
         <ContextFornecedorProduto.Provider
             value={{
                 loadFornecedorProdutos,
-                loadFornecedorProdutosNotSelected
+                loadFornecedorProdutosNotSelected,
+                createFornecedorProduto
             }}
         >
             {children}
