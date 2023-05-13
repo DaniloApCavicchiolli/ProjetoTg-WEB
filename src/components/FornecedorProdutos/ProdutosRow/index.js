@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { Container, Body, Buttons } from './styles';
 import colors from '../../../styles/colors';

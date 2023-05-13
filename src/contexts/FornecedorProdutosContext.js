@@ -49,12 +49,30 @@ const ProviderFornecedorProduto = ({ children }) => {
         }
     };
 
+    /* Função para remover relação de produto e fornecedor */
+    const deleteFornecedorProduto = async (produto_id) => {
+        try {
+            const id = getId();
+            const response = await api.delete(`/fornecedor_produtos/${id}/${produto_id}`);
+            if (response.status === 200) {
+                toast.success(response.data.message);
+                return;
+            }
+            toast.error(response?.data?.message)
+        } catch (err) {
+            console.log(err);
+            toast.error(err?.response?.data?.message || "Não foi possível deletar o Produto!");
+            return false;
+        }
+    };
+
     return (
         <ContextFornecedorProduto.Provider
             value={{
                 loadFornecedorProdutos,
                 loadFornecedorProdutosNotSelected,
-                createFornecedorProduto
+                createFornecedorProduto,
+                deleteFornecedorProduto
             }}
         >
             {children}

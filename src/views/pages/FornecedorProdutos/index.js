@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { RiFilterLine, RiSearchLine } from "react-icons/ri";
+import { RiSearchLine } from "react-icons/ri";
 
 import FornecedorProdutosRows from "../../../components/FornecedorProdutos";
 import { ContextFornecedorProduto } from "../../../contexts/FornecedorProdutosContext";
 import ProdutosRow from "../../../components/FornecedorProdutos/ProdutosRow";
 import Pagination from '@mui/material/Pagination';
+import ModalDelete from "./ModalDelete";
 
 import { Container, Content, Tabela, Buscar } from "./styles";
 import colors from "../../../styles/colors";
@@ -24,12 +25,8 @@ function FornecedorProdutos() {
     const [pageProdutos, setPageProdutos] = useState(0);
 
     const [selected, setSelected] = useState([]);
-
-    useEffect(() => {
-        loadFornecedorProdutos(setFornecedorProdutos);
-        loadFornecedorProdutosNotSelected(setProdutos, setTotalPageProdutos, setRegistrosProdutos);
-    }, [pageProdutos]);
-
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [produtoSelected, setProdutoSelected] = useState(null);
 
     const produtosOfFornecedor = [...fornecedorProdutos]
         .slice(fornecedorProdutosPage * 5, fornecedorProdutosPage * 5 + 5);
@@ -47,8 +44,20 @@ function FornecedorProdutos() {
         }
     };
 
+    useEffect(() => {
+        loadFornecedorProdutos(setFornecedorProdutos);
+        loadFornecedorProdutosNotSelected(setProdutos, setTotalPageProdutos, setRegistrosProdutos);
+    }, [pageProdutos]);
+
     return (
         <>
+            {showModalDelete && (
+                <ModalDelete
+                    setShowModalDelete={setShowModalDelete}
+                    produto={produtoSelected}
+                    setFornecedorProdutos={setFornecedorProdutos}
+                />
+            )}
             <Container>
                 <Tabela>
                     <Buscar>
@@ -58,7 +67,11 @@ function FornecedorProdutos() {
                         </div>
                     </Buscar>
                     <div>
-                        <div id="p" type="button" onClick={() => setBotao(1)}
+                        <div id="p" type="button"
+                            onClick={() => {
+                                setBotao(1);
+                                loadFornecedorProdutos(setFornecedorProdutos);
+                            }}
                             style={{
                                 backgroundColor: botao === 1 ? `${colors.primary}` : `${colors.lightGray}`,
                                 color: botao === 1 ? `${colors.white}` : `${colors.darkGrayishBlue}`
@@ -66,10 +79,11 @@ function FornecedorProdutos() {
                             Produtos que Trabalha
                         </div>
                         {" || "}
-                        <div id="p" type="button" onClick={() => {
-                            setBotao(2);
-                            loadFornecedorProdutosNotSelected(setProdutos, setTotalPageProdutos, setRegistrosProdutos)
-                        }}
+                        <div id="p" type="button"
+                            onClick={() => {
+                                setBotao(2);
+                                loadFornecedorProdutosNotSelected(setProdutos, setTotalPageProdutos, setRegistrosProdutos)
+                            }}
                             style={{
                                 backgroundColor: botao === 2 ? `${colors.primary}` : `${colors.lightGray}`,
                                 color: botao === 2 ? `${colors.white}` : `${colors.darkGrayishBlue}`
@@ -110,6 +124,8 @@ function FornecedorProdutos() {
                         <FornecedorProdutosRows
                             key={index}
                             produto={data}
+                            setShowModalDelete={setShowModalDelete}
+                            setProdutoSelected={setProdutoSelected}
                         />
                     ))}
                 {botao === 1 &&
