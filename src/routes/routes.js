@@ -6,7 +6,8 @@ import {
     RiUserSharedLine,
     RiProfileFill,
     RiInboxArchiveLine,
-    RiUser2Fill
+    RiUser2Fill,
+    RiBriefcase2Line
 } from "react-icons/ri";
 
 import SignIn from "../views/pages/SignIn";
@@ -16,6 +17,7 @@ import ListagemFornecedor from "../views/pages/ListFornecedores";
 import Perfil from "../views/pages/Profile";
 import CategoriaProduto from "../views/pages/CategoriaProduto";
 import FornecedorProdutos from "../views/pages/FornecedorProdutos";
+import Solicitacoes from "../views/pages/Solicitacoes";
 import { getToken } from "../services/auth";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -78,7 +80,14 @@ export const routes = {
             role: [1],
             icon: RiInboxArchiveLine,
             component: () => <FornecedorProdutos />,
-          },
+        },
+        {
+            path: "/dashboard/solicitacoes",
+            title: "Solicitações",
+            role: [999, 1],
+            icon: RiBriefcase2Line,
+            component: () => <Solicitacoes />,
+        },
         {
             path: "/dashboard/profile",
             title: "Perfil",
