@@ -7,7 +7,7 @@ import {
     RiProfileFill,
     RiInboxArchiveLine,
     RiUser2Fill,
-    RiBriefcase2Line
+    RiDraftLine
 } from "react-icons/ri";
 
 import SignIn from "../views/pages/SignIn";
@@ -85,7 +85,7 @@ export const routes = {
             path: "/dashboard/solicitacoes",
             title: "Solicitações",
             role: [999, 1],
-            icon: RiBriefcase2Line,
+            icon: RiDraftLine,
             component: () => <Solicitacoes />,
         },
         {

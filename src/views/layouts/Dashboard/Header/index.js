@@ -1,70 +1,20 @@
 import React, { useEffect, useState } from "react";
 import {
-  RiSearchLine,
   RiMenu2Line,
-  RiArrowUpDownLine,
   RiExchangeDollarFill,
   RiShieldUserLine,
-  RiContactsBookLine,
   RiSurveyLine,
   RiUser2Fill
 } from "react-icons/ri";
 import { useLocation } from 'react-router-dom';
 import api from "../../../../services/api";
 import colors from "../../../../styles/colors";
+import { getNivel } from "../../../../services/auth";
 
 import { Container, Content, NamePage, Buscar, Cards } from "./styles";
 
 function Header({ name }) {
-  const location = useLocation();
-
-  const [solicitacoes, setSolicitacoes] = useState([]);
-  const [enviados, setEnviados] = useState([]);
-  const [contatos, setContatos] = useState([]);
-  const [subscriptions, setSubscriptions] = useState([]);
-
-  const loadingSolicitacoes = async () => {
-    try {
-      const { data } = await api.get(`/orcamento`);
-      setSolicitacoes(data.content);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const loadingEnviados = async () => {
-    try {
-      const { data } = await api.get(`/orcamentos_enviados`);
-      setEnviados(data.content);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const loadingContatos = async () => {
-    try {
-      const { data } = await api.get(`/users_filtro`);
-      setContatos(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const loadingSubscriptions = async () => {
-    try {
-      const { data } = await api.get(`/users_filtro`);
-      setSubscriptions(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    // loadingSolicitacoes();
-    // loadingEnviados();
-    // loadingContatos();
-    // loadingSubscriptions();
-  }, []);
+  const nivel = getNivel();
 
   return (
     <Container>
@@ -74,41 +24,36 @@ function Header({ name }) {
           <b>{name}</b>
         </NamePage>
       </Content>
-      {
-        location.pathname !== "/dashboard/users" &&
-        location.pathname !== "/dashboard/fornecedor" &&
-        location.pathname !== "/dashboard/profile" &&
-        location.pathname !== "/dashboard/fornecedorProdutos" &&
-        (<Cards>
-          <div style={{ backgroundColor: '#626679' }}>
-            <span>Novas Solicitações</span>
-            <div>
-              <p>{25}
-              </p><RiSurveyLine size={24} color="#FFFFFF" />
-            </div>
+      {nivel === '999' && <Cards>
+        <div style={{ backgroundColor: '#626679' }}>
+          <span>Novas Solicitações</span>
+          <div>
+            <p>{25}
+            </p><RiSurveyLine size={24} color="#FFFFFF" />
           </div>
-          <div style={{ backgroundColor: colors.primary }}>
-            <span>Cotações Enviadas</span>
-            <div>
-              <p>{25}</p>
-              <RiExchangeDollarFill size={24} color="#FFFFFF" />
-            </div>
+        </div>
+        <div style={{ backgroundColor: colors.primary }}>
+          <span>Cotações Enviadas</span>
+          <div>
+            <p>{25}</p>
+            <RiExchangeDollarFill size={24} color="#FFFFFF" />
           </div>
-          <div style={{ backgroundColor: '#C4C4C4' }}>
-            <span>Clientes</span>
-            <div>
-              <p>{10}</p>
-              <RiShieldUserLine size={24} color="#FFFFFF" />
-            </div>
+        </div>
+        <div style={{ backgroundColor: '#C4C4C4' }}>
+          <span>Clientes</span>
+          <div>
+            <p>{10}</p>
+            <RiShieldUserLine size={24} color="#FFFFFF" />
           </div>
-          <div style={{ backgroundColor: colors.secondary }}>
-            <span>Fornecedores</span>
-            <div>
-              <p>{16}</p>
-              <RiUser2Fill size={24} color="#FFFFFF" />
-            </div>
+        </div>
+        <div style={{ backgroundColor: colors.secondary }}>
+          <span>Fornecedores</span>
+          <div>
+            <p>{16}</p>
+            <RiUser2Fill size={24} color="#FFFFFF" />
           </div>
-        </Cards>)}
+        </div>
+      </Cards>}
     </Container>
   );
 }
