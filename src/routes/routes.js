@@ -3,11 +3,13 @@ import { Route, Redirect } from "react-router-dom";
 import {
     RiDashboardLine,
     RiTeamLine,
-    RiUserSharedLine,
     RiProfileFill,
     RiInboxArchiveLine,
     RiUser2Fill,
-    RiDraftLine
+    RiDraftLine,
+    RiChatCheckLine,
+    RiSurveyLine,
+    RiBriefcase2Line
 } from "react-icons/ri";
 
 import SignIn from "../views/pages/SignIn";
@@ -18,6 +20,7 @@ import Perfil from "../views/pages/Profile";
 import CategoriaProduto from "../views/pages/CategoriaProduto";
 import FornecedorProdutos from "../views/pages/FornecedorProdutos";
 import Solicitacoes from "../views/pages/Solicitacoes";
+import Enviados from "../views/pages/Enviados";
 import { getToken } from "../services/auth";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -87,6 +90,13 @@ export const routes = {
             role: [999, 1],
             icon: RiDraftLine,
             component: () => <Solicitacoes />,
+        },
+        {
+            path: "/dashboard/enviados",
+            title: "Cotações",
+            role: [999, 1],
+            icon: RiChatCheckLine,
+            component: () => <Enviados />,
         },
         {
             path: "/dashboard/profile",

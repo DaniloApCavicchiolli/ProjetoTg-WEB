@@ -76,7 +76,6 @@ function Solicitacoes() {
                             <p>Mais de {registros} novos orçamentos</p>
                         </div>
                     </div>
-
                 </Content>
                 {solicitacoesPaginado?.map((data, index) => (
                     <SolicitacoesRow
