@@ -22,6 +22,7 @@ import FornecedorProdutos from "../views/pages/FornecedorProdutos";
 import Solicitacoes from "../views/pages/Solicitacoes";
 import Enviados from "../views/pages/Enviados";
 import GraficosAdm from "../views/pages/DashboardAdmin";
+import GraficosFornecedor from "../views/pages/DashboardFornecedor";
 import { getToken } from "../services/auth";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -76,7 +77,7 @@ export const routes = {
             title: "Dashboard Fornecedor",
             role: [1],
             icon: RiDashboardLine,
-            component: () => <div>DashboardFornecedor</div>,
+            component: () => <GraficosFornecedor />,
         },
         {
             path: "/dashboard/fornecedorProdutos",
