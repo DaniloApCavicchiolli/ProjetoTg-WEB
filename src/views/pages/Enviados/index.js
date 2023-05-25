@@ -98,10 +98,6 @@ function Enviados() {
                         <p type="button" onClick={() => setCor(3)} style={{ color: cor === 3 && "#F8AA27" }} >
                             <BiFontSize size={25} />Fornecedor</p>
                     </Body>}
-                    {nivel === '999' && <Body>
-                        <p type="button" onClick={() => setCor(4)} style={{ color: cor === 4 && "#F8AA27" }} >
-                            <BiFontSize size={25} />Endereço</p>
-                    </Body>}
                     <Body>
                         <p type="button" onClick={() => setCor(5)} style={{ color: cor === 5 && "#F8AA27" }}>
                             <BiFontSize size={25} />Preço</p>
@@ -109,6 +105,8 @@ function Enviados() {
                     <Body>
                         <p type="button" onClick={() => setCor(6)} style={{ color: cor === 6 && "#F8AA27" }}>
                             <BiFontSize size={25} />Data</p>
+                    </Body>
+                    <Body>
                     </Body>
                 </Content>
                 {enviadosPaginado?.map((data, index) => (

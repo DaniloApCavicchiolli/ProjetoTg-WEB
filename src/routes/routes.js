@@ -21,6 +21,7 @@ import CategoriaProduto from "../views/pages/CategoriaProduto";
 import FornecedorProdutos from "../views/pages/FornecedorProdutos";
 import Solicitacoes from "../views/pages/Solicitacoes";
 import Enviados from "../views/pages/Enviados";
+import GraficosAdm from "../views/pages/DashboardAdmin";
 import { getToken } from "../services/auth";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -47,7 +48,7 @@ export const routes = {
             title: "Dashboard",
             role: [999],
             icon: RiDashboardLine,
-            component: () => <div>Dashboard</div>,
+            component: () => <GraficosAdm />,
         },
         {
             path: "/dashboard/listusers",

@@ -27,10 +27,6 @@ const EnviadosRow = ({ enviados }) => {
                     <p>Fornecedor</p>
                     <span>{enviados.fornecedor}</span>
                 </Body>}
-                {nivel === '999' && <Body>
-                    <p>Endereço</p>
-                    <span>{enviados.fornecedorEndereco}</span>
-                </Body>}
                 <Body>
                     <p>Total Orçado</p>
                     <span>R$ {enviados.valor.toFixed(2)}</span>
@@ -38,6 +34,14 @@ const EnviadosRow = ({ enviados }) => {
                 <Body>
                     <p>Data da Resposta</p>
                     <span>{enviados.date}</span>
+                </Body>
+                <Body>
+                    <span
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => { }}
+                    >
+                        {"ººº"}
+                    </span>
                 </Body>
             </Container>
         </>
