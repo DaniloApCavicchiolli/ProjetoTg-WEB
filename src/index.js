@@ -9,6 +9,7 @@ import { AuthProviderFornecedor } from "./contexts/FornecedorContext";
 import { ProviderCategoria } from './contexts/CategoriaContext';
 import { ProviderProduto } from './contexts/ProdutoContext';
 import { ProviderFornecedorProduto } from './contexts/FornecedorProdutosContext';
+import { ProviderSolicitacao } from './contexts/SolicitacoesContext';
 // import App from './views/pages/ListFornecedores/Perfil';
 
 ReactDOM.render(
@@ -19,7 +20,9 @@ ReactDOM.render(
         <ProviderCategoria>
           <ProviderProduto>
             <ProviderFornecedorProduto>
-              <App />
+              <ProviderSolicitacao>
+                <App />
+              </ProviderSolicitacao>
             </ProviderFornecedorProduto>
           </ProviderProduto>
         </ProviderCategoria>

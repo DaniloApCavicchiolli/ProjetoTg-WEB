@@ -26,7 +26,7 @@ export const Container = styled.div`
     }
     header {
         flex: 1;
-        text-align: left;
+        text-align: center;
         margin-left: 10px;
         width: 100px;
         white-space: nowrap;
