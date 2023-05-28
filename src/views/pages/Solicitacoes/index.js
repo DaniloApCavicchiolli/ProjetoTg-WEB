@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import {
     RiSearchLine
 } from "react-icons/ri";
+import Pagination from '@mui/material/Pagination';
 
 import SolicitacoesRow from "../../../components/SolicitacoesRow";
 import ModalDelete from "./ModalDelete";
-import Pagination from '@mui/material/Pagination';
+import ModalEdit from "./ModalEdit";
 
 import { Container, Content, Filtro, Buscar } from "./styles";
 
@@ -40,7 +41,8 @@ const solicitacoesData = [
         marca: 'Marca 4',
         quantidade: 5,
         forma_pagamento: 'Cartão',
-        date: '24/05/2023'
+        date: '24/05/2023',
+        value: 40.00
     },
     {
         id: 5,
@@ -48,7 +50,17 @@ const solicitacoesData = [
         marca: 'Marca 5',
         quantidade: 5,
         forma_pagamento: 'Cartão',
-        date: '25/05/2023'
+        date: '25/05/2023',
+        value: 100.00
+    },
+    {
+        id: 6,
+        nome: 'Produto 6',
+        marca: 'Marca 6',
+        quantidade: 5,
+        forma_pagamento: 'Cartão',
+        date: '25/05/2023',
+        value: 130.00
     }
 ]
 
@@ -56,12 +68,13 @@ function Solicitacoes() {
 
     const [solicitacoes, setSolicitacoes] = useState(solicitacoesData);
     const [buscar, setBuscar] = useState();
+
     const [itemSelected, setItemSelected] = useState(null);
     const [showModalDelete, setShowModalDelete] = useState(false);
+    const [showModalEdit, setShowModalEdit] = useState(false);
 
     const registros = solicitacoes?.length;
     const [paginas, setPaginas] = useState(0);
-
     const solicitacoesPaginado = solicitacoes.slice(paginas * 5, paginas * 5 + 5);
     const totalPages = Math.ceil(solicitacoes.length / 5);
 
@@ -70,6 +83,12 @@ function Solicitacoes() {
             {showModalDelete && (
                 <ModalDelete
                     setShowModalDelete={setShowModalDelete}
+                />
+            )}
+            {showModalEdit && (
+                <ModalEdit
+                    setShowModalEdit={setShowModalEdit}
+                    item={itemSelected}
                 />
             )}
             <Container>
@@ -95,7 +114,9 @@ function Solicitacoes() {
                         key={index}
                         solicitacoes={data}
                         paginas={paginas}
+                        setItemSelected={setItemSelected}
                         setShowModalDelete={setShowModalDelete}
+                        setShowModalEdit={setShowModalEdit}
                     />
                 ))}
                 <Pagination
