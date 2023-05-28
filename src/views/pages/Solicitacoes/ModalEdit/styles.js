@@ -23,7 +23,7 @@ export const Body = styled.div`
   align-items: center;
   background: #fff;
   width: 1000px;
-  height: 90%;
+  /* height: 90%; */
   border-radius: 30px;
   padding-bottom: 30px;
   > div {
@@ -93,7 +93,7 @@ export const Column = styled.div`
     box-shadow: 0px 5px 6px rgba(0,0,0,0.2);
      span {
       ${fonts[400]};
-      color: ${colors.dark};
+      color: ${colors.textLabel};
       display: flex;
       margin-top: 10px;
       margin-bottom: 10px;

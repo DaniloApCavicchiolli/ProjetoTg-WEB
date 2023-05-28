@@ -34,7 +34,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  padding-top: 59px;
+  padding-top: 30px;
   div {
     display: flex;
     align-items: center;
@@ -83,14 +83,15 @@ export const Buscar = styled.tr`
   align-items: center;
   justify-content: space-between;
   background-color: ${colors.lightGray};
+  /* box-shadow: 0px 5px 6px rgba(0,0,0,0.6); */
   width: 30%;
   height: 45px;
-  border-radius: 5px;
+  border-radius: 8px;
   /* background-color: red; */
   input {
     width: 100%;
     height: 100%;
-    color: ${colors.orange};
+    color: ${colors.dark};
     background-color: transparent;
     font-size: 18px;
     outline: none;
@@ -99,8 +100,10 @@ export const Buscar = styled.tr`
   #button {
     width: 15%;
     height: 100%;
+    border-radius: 8px;
     align-items: center;
     justify-content: center;
+    background: ${colors.secondaryRGB};
     /* background: green; */
     cursor: pointer;
     :hover {

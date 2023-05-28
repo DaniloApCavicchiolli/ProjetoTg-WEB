@@ -35,7 +35,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  padding-top: 59px;
+  padding-top: 30px;
   /* background-color: yellow; */
   div {
     display: flex;
@@ -68,6 +68,18 @@ export const Content = styled.div`
   }
 `;
 
+export const Filtros = styled.div` 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  > #select {
+    border-radius: 8px;
+    margin-left: 50px;
+    /* background-color: blue; */
+  }
+`;
+
 export const Filtro = styled.div` 
   display: flex;
   align-items: center;
@@ -88,8 +100,6 @@ export const Filtro = styled.div`
     border-radius: 8px;
     cursor: pointer;
     /* background-color: ${(backgroundColor) => backgroundColor ?? `${colors.background}`} */
-    /* background-color: #EFF1F9; */
-    /* box-shadow:0px 5px 6px rgba(0,0,0,0.6); */
   }
 `;
 
@@ -113,25 +123,27 @@ export const Buscar = styled.tr`
   align-items: center;
   justify-content: space-between;
   background-color: ${colors.lightGray};
+  /* box-shadow: 0px 5px 6px rgba(0,0,0,0.6); */
   width: 30%;
   height: 45px;
-  border-radius: 5px;
-  margin-right: 150px;
+  border-radius: 8px;
   /* background-color: red; */
   input {
     width: 100%;
     height: 100%;
-    color: ${colors.darkGrayishBlue};
+    color: ${colors.dark};
     background-color: transparent;
     font-size: 18px;
     outline: none;
     /* background-color: blue; */
   }
-  > #button {
+  #button {
     width: 15%;
     height: 100%;
+    border-radius: 8px;
     align-items: center;
     justify-content: center;
+    background: ${colors.secondaryRGB};
     /* background: green; */
     cursor: pointer;
     :hover {

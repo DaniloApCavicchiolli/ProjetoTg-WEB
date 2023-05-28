@@ -96,7 +96,7 @@ justify-content: center;
     box-shadow: 0px 5px 6px rgba(0,0,0,0.2);
      span {
       ${fonts[400]};
-      color: ${colors.dark};
+      color: ${colors.textLabel};
       display: flex;
       margin-top: 10px;
       margin-bottom: 10px;

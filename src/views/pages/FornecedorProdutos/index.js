@@ -7,7 +7,7 @@ import ProdutosRow from "../../../components/FornecedorProdutos/ProdutosRow";
 import Pagination from '@mui/material/Pagination';
 import ModalDelete from "./ModalDelete";
 
-import { Container, Content, Tabela, Buscar } from "./styles";
+import { Container, Content, ContainerButtons, Buscar } from "./styles";
 import colors from "../../../styles/colors";
 
 function FornecedorProdutos() {
@@ -59,13 +59,7 @@ function FornecedorProdutos() {
                 />
             )}
             <Container>
-                <Tabela>
-                    <Buscar>
-                        <input name="buscar" placeholder="Buscar" onChange={(e) => setBuscar(e.target.value)} />
-                        <div id='button' type="button" onClick={() => { }}>
-                            <RiSearchLine size={20} />
-                        </div>
-                    </Buscar>
+                <ContainerButtons>
                     <div>
                         <div id="p" type="button"
                             onClick={() => {
@@ -91,13 +85,19 @@ function FornecedorProdutos() {
                             Produtos
                         </div>
                     </div>
-                </Tabela>
+                </ContainerButtons>
                 <Content>
                     <div>
                         <div>
                             {botao === 1 && <h1>Produtos que trabalha</h1>}
                             {botao === 2 && <h1>Lista de Produtos</h1>}
                         </div>
+                        <Buscar>
+                            <input style={{ marginLeft: '10px' }} name="buscar" placeholder="Buscar" onChange={(e) => setBuscar(e.target.value)} />
+                            <div id='button' type="button" onClick={() => { }}>
+                                <RiSearchLine size={20} />
+                            </div>
+                        </Buscar>
                         <div>
                             <button
                                 style={{
@@ -114,8 +114,8 @@ function FornecedorProdutos() {
                     </div>
                     <div>
                         <div>
-                            {botao === 1 && <p>Mais de {produtosOfFornecedor.length} novos produtos </p>}
-                            {botao === 2 && <p>Mais de {registrosProdutos} novos produtos </p>}
+                            {botao === 1 && <p>Total de {produtosOfFornecedor.length} produtos </p>}
+                            {botao === 2 && <p>Total de {registrosProdutos} produtos </p>}
                         </div>
                     </div>
                 </Content>

@@ -2,6 +2,7 @@
 /* eslint-disable no-dupe-keys */
 export default {
     primary: "#5f2598",
+    primaryRGB: "rgb(95, 37, 152, 0.3)",
     secondary: "#7a9186",
     secondaryRGB: "rgb(122, 145, 134, 0.3)",
     textLabel: "#af92cb",

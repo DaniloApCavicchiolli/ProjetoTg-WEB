@@ -35,14 +35,14 @@ const EnviadosRow = ({ enviados }) => {
                     <p>Data da Resposta</p>
                     <span>{enviados.date}</span>
                 </Body>
-                <Body>
+                {/* <Body>
                     <span
                         style={{ cursor: 'pointer' }}
                         onClick={() => { }}
                     >
                         {"ººº"}
                     </span>
-                </Body>
+                </Body> */}
             </Container>
         </>
     )

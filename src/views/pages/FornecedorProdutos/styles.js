@@ -5,8 +5,7 @@ import fonts from "../../../styles/fonts";
 export const Container = styled.div`
   align-self: center;
   width: 95%;
-  height: 85%;
-  /* height: 820px; */
+  height: 80%;
   margin-top: 20px;
   border-spacing: 0px 10px;
   border-radius: 12px;
@@ -14,16 +13,35 @@ export const Container = styled.div`
   color: ${colors.darKGray};
   background: #fff;
   text-align: center;
-  
+  overflow: auto;
+    -ms-overflow-style: none;
+    ::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 30px !important;
+    margin-right: 70px !important;
+    }
+    ::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+    border-radius: 30px !important;
+    margin-right: 30px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 30px !important;
+    margin-right: 30px !important;
+  }
+
 `;
 
 export const Content = styled.div`
-    /* background-color: yellowgreen;  */
-margin-top: 30px;
+  padding-top: 30px;
+  /* background-color: yellow; */
   div {
     display: flex;
     align-items: center; 
     justify-content: space-between; 
+    /* background-color: blue;  */
   }
   h1 {
     font-size: 24px;
@@ -50,7 +68,7 @@ margin-top: 30px;
   }
 `;
 
-export const Tabela = styled.div` 
+export const ContainerButtons = styled.div` 
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -136,21 +154,20 @@ export const Body = styled.div`
     }
 `;
 
-export const Buscar = styled.div`
+export const Buscar = styled.tr`
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: ${colors.lightGray};
+  /* box-shadow: 0px 5px 6px rgba(0,0,0,0.6); */
   width: 30%;
   height: 45px;
-  border-radius: 5px;
-  margin-right: 150px;
+  border-radius: 8px;
   /* background-color: red; */
   input {
     width: 100%;
     height: 100%;
-    margin-left: 10px;
-    color: ${colors.darkGrayishBlue};
+    color: ${colors.dark};
     background-color: transparent;
     font-size: 18px;
     outline: none;
@@ -159,8 +176,10 @@ export const Buscar = styled.div`
   #button {
     width: 15%;
     height: 100%;
+    border-radius: 8px;
     align-items: center;
     justify-content: center;
+    background: ${colors.secondaryRGB};
     /* background: green; */
     cursor: pointer;
     :hover {

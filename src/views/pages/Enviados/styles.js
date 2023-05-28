@@ -13,6 +13,24 @@ export const Container = styled.div`
   color: ${colors.DarKGray};
   background: #fff;
   text-align: center;
+  overflow: auto;
+    -ms-overflow-style: none;
+    ::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 30px !important;
+    margin-right: 70px !important;
+    }
+    ::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+    border-radius: 30px !important;
+    margin-right: 30px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 30px !important;
+    margin-right: 30px !important;
+  }
 `;
 
 export const Header = styled.div`
@@ -38,8 +56,9 @@ export const Header = styled.div`
     background-color: ${colors.primary};  
   }
 `;
+
 export const Head = styled.div`
-  padding-top: 59px;
+  padding-top: 30px;
   /* background-color: yellow; */
   div {
     display: flex;
@@ -69,6 +88,18 @@ export const Head = styled.div`
     color: ${colors.primary}; 
     background-color: #FFFFFF;
     box-shadow: 0px 5px 6px rgba(0,0,0,0.7); 
+  }
+`;
+
+export const Filtros = styled.div` 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  > #select {
+    border-radius: 8px;
+    margin-left: 50px;
+    /* background-color: blue; */
   }
 `;
 
@@ -141,16 +172,15 @@ export const Buscar = styled.tr`
   align-items: center;
   justify-content: space-between;
   background-color: ${colors.lightGray};
+  /* box-shadow: 0px 5px 6px rgba(0,0,0,0.6); */
   width: 30%;
   height: 45px;
-  border-radius: 5px;
-  margin-right: 150px;
+  border-radius: 8px;
   /* background-color: red; */
   input {
     width: 100%;
     height: 100%;
-    margin-left: 15px;
-    color: ${colors.darkGrayishBlue};
+    color: ${colors.dark};
     background-color: transparent;
     font-size: 18px;
     outline: none;
@@ -159,8 +189,10 @@ export const Buscar = styled.tr`
   #button {
     width: 15%;
     height: 100%;
+    border-radius: 8px;
     align-items: center;
     justify-content: center;
+    background: ${colors.secondaryRGB};
     /* background: green; */
     cursor: pointer;
     :hover {

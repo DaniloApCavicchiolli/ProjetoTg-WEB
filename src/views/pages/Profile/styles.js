@@ -6,7 +6,8 @@ import fonts from "../../../styles/fonts";
 export const Container = styled.div`
   background: ${colors.white};
   width: 95%;
-  height: 100%;
+  height: 80%;
+  margin-top: 20px;
   align-self: center;
   /* margin: 30px 0px; */
   border-radius: 10px;
@@ -28,24 +29,24 @@ export const Container = styled.div`
     ${fonts[400]};
     color: ${colors.darkGrayishBlue};
   }
-  /* overflow: auto; */
-  /* -ms-overflow-style: none;
-  ::-webkit-scrollbar-track {
+  overflow: auto;
+    -ms-overflow-style: none;
+    ::-webkit-scrollbar-track {
     background-color: transparent;
     border-radius: 30px !important;
     margin-right: 70px !important;
-  }
-  ::-webkit-scrollbar {
+    }
+    ::-webkit-scrollbar {
     width: 8px;
     background: transparent;
     border-radius: 30px !important;
     margin-right: 30px;
-  }
-  ::-webkit-scrollbar-thumb {
+    }
+    ::-webkit-scrollbar-thumb {
     background: transparent;
     border-radius: 30px !important;
     margin-right: 30px !important;
-  } */
+  }
 `;
 
 export const Content = styled.div`
@@ -66,7 +67,7 @@ export const Column = styled.div`
     box-shadow: 0px 5px 6px rgba(0,0,0,0.2);
      span {
       ${fonts[400]};
-      color: ${colors.dark};
+      color: ${colors.textLabel};
       display: flex;
       margin-top: 10px;
       margin-bottom: 10px;
