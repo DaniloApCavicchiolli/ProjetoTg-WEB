@@ -23,7 +23,7 @@ export const Body = styled.div`
   align-items: center;
   background: #fff;
   width: 700px;
-  height: 80%;
+  height: 90%;
   border-radius: 30px;
   /* padding-bottom: 50px; */
   > div {

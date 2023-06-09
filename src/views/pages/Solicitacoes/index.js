@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { RiSearchLine, RiFilterLine } from "react-icons/ri";
 import Pagination from '@mui/material/Pagination';
 import Select from "react-select";
@@ -7,66 +7,14 @@ import SolicitacoesRow from "../../../components/SolicitacoesRow";
 import ModalDelete from "./ModalDelete";
 import ModalEdit from "./ModalEdit";
 
+import { ContextSolicitacao } from "../../../contexts/SolicitacoesContext";
+
 import colors from "../../../styles/colors";
 import { Container, Content, Filtros, Buscar } from "./styles";
 
-const solicitacoesData = [
-    {
-        id: 1,
-        nome: 'Produto 1',
-        marca: 'Marca 1',
-        quantidade: 5,
-        forma_pagamento: 'Cartão',
-        date: '20/05/2023'
-    },
-    {
-        id: 2,
-        nome: 'Produto 2',
-        marca: 'Marca 2',
-        quantidade: 5,
-        forma_pagamento: 'Cartão',
-        date: '22/05/2023'
-    },
-    {
-        id: 3,
-        nome: 'Produto 3',
-        marca: 'Marca 3',
-        quantidade: 5,
-        forma_pagamento: 'Cartão',
-        date: '23/05/2023'
-    },
-    {
-        id: 4,
-        nome: 'Produto 4',
-        marca: 'Marca 4',
-        quantidade: 5,
-        forma_pagamento: 'Cartão',
-        date: '24/05/2023',
-        value: 40.00
-    },
-    {
-        id: 5,
-        nome: 'Produto 5',
-        marca: 'Marca 5',
-        quantidade: 5,
-        forma_pagamento: 'Cartão',
-        date: '25/05/2023',
-        value: 100.00
-    },
-    {
-        id: 6,
-        nome: 'Produto 6',
-        marca: 'Marca 6',
-        quantidade: 5,
-        forma_pagamento: 'Cartão',
-        date: '25/05/2023',
-        value: 130.00
-    }
-]
-
 function Solicitacoes() {
-
-    const [solicitacoes, setSolicitacoes] = useState(solicitacoesData);
+    const { LoadAllSolicitacoes } = useContext(ContextSolicitacao);
+    const [solicitacoes, setSolicitacoes] = useState([]);
     const [buscar, setBuscar] = useState();
 
     const [produtos, setProdutos] = useState([
@@ -89,7 +37,7 @@ function Solicitacoes() {
     const registros = solicitacoes?.length;
     const [paginas, setPaginas] = useState(0);
 
-    const solicitacoesPaginado = solicitacoes.slice(paginas * 5, paginas * 5 + 5);
+    const solicitacoesPaginado = solicitacoes?.slice(paginas * 5, paginas * 5 + 5);
     const totalPages = Math.ceil(solicitacoes.length / 5);
 
     const customStyles = {
@@ -113,6 +61,11 @@ function Solicitacoes() {
         })
     };
 
+    useEffect(() => {
+        LoadAllSolicitacoes().then((result) => {
+            setSolicitacoes(result.content);
+        });
+    }, []);
 
     return (
         <>

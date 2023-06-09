@@ -6,6 +6,21 @@ const ContextSolicitacao = createContext({});
 
 const ProviderSolicitacao = ({ children }) => {
 
+    /* Função para carregar todas as solicitações */
+    const LoadAllSolicitacoes = async () => {
+        try {
+            const response = await api.get(`/solicitacao`);
+            if (response.status === 200) {
+                return response.data;
+            }
+            return;
+        } catch (err) {
+            console.log(err);
+            toast.error("Não foi possível mostrar as solicitções");
+            return false;
+        }
+    };
+
     /* Função para delatar solicitação */
     const deleteSolicitacao = async (id) => {
         try {
@@ -63,6 +78,7 @@ const ProviderSolicitacao = ({ children }) => {
                 deleteSolicitacao,
                 updateSolicitacao,
                 createSolicitacao,
+                LoadAllSolicitacoes
             }}
         >
             {children}
