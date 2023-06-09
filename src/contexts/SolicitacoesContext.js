@@ -1,15 +1,35 @@
 import React, { createContext } from "react";
+import { getNivel, getId } from "../services/auth";
 import { toast } from "react-toastify";
 import api from "../services/api";
 
 const ContextSolicitacao = createContext({});
 
 const ProviderSolicitacao = ({ children }) => {
+    const nivel = getNivel();
+    const id = getId();
 
     /* Função para carregar todas as solicitações */
     const LoadAllSolicitacoes = async () => {
         try {
             const response = await api.get(`/solicitacao`);
+            if (response.status === 200) {
+                return response.data;
+            }
+            return;
+        } catch (err) {
+            console.log(err);
+            toast.error("Não foi possível mostrar as solicitções");
+            return false;
+        }
+    };
+
+    /* Função para carregar todas as solicitações para o fornecedor */
+    const LoadAllSolicitacoesFornecedor = async () => {
+        try {
+            const response = await api.get(`/solicitacao_fornecedor/${id}`);
+            console.log('ResponseFornecedor', response.data.content);
+            
             if (response.status === 200) {
                 return response.data;
             }
@@ -78,7 +98,8 @@ const ProviderSolicitacao = ({ children }) => {
                 deleteSolicitacao,
                 updateSolicitacao,
                 createSolicitacao,
-                LoadAllSolicitacoes
+                LoadAllSolicitacoes,
+                LoadAllSolicitacoesFornecedor
             }}
         >
             {children}

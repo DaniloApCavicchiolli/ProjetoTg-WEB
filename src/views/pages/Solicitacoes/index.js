@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { RiSearchLine, RiFilterLine } from "react-icons/ri";
 import Pagination from '@mui/material/Pagination';
+import { getNivel } from "../../../services/auth";
 import Select from "react-select";
 
 import SolicitacoesRow from "../../../components/SolicitacoesRow";
@@ -13,7 +14,9 @@ import colors from "../../../styles/colors";
 import { Container, Content, Filtros, Buscar } from "./styles";
 
 function Solicitacoes() {
-    const { LoadAllSolicitacoes } = useContext(ContextSolicitacao);
+    const nivel = getNivel();
+
+    const { LoadAllSolicitacoes, LoadAllSolicitacoesFornecedor } = useContext(ContextSolicitacao);
     const [solicitacoes, setSolicitacoes] = useState([]);
     const [buscar, setBuscar] = useState();
 
@@ -62,9 +65,15 @@ function Solicitacoes() {
     };
 
     useEffect(() => {
-        LoadAllSolicitacoes().then((result) => {
-            setSolicitacoes(result.content);
-        });
+        if (nivel === '999') {
+            LoadAllSolicitacoes().then((result) => {
+                setSolicitacoes(result.content);
+            });
+        } else {
+            LoadAllSolicitacoesFornecedor().then((result) => {
+                setSolicitacoes(result.content);
+            });
+        }
     }, []);
 
     return (
