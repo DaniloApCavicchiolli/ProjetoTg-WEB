@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../services/api";
 import { getId, login } from "../services/auth";
@@ -75,7 +75,6 @@ const AuthProviderFornecedor = ({ children }) => {
           response.data?.fornecedor?.nivel,
           response.data?.fornecedor?.id
         );
-
         toast.success("Bem Vindo!");
         return response.data;
       } else {

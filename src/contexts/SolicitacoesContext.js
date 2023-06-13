@@ -6,8 +6,6 @@ import api from "../services/api";
 const ContextSolicitacao = createContext({});
 
 const ProviderSolicitacao = ({ children }) => {
-    const nivel = getNivel();
-    const id = getId();
 
     /* Função para carregar todas as solicitações */
     const LoadAllSolicitacoes = async () => {
@@ -27,8 +25,8 @@ const ProviderSolicitacao = ({ children }) => {
     /* Função para carregar todas as solicitações para o fornecedor */
     const LoadAllSolicitacoesFornecedor = async () => {
         try {
+            const id = getId();
             const response = await api.get(`/solicitacao_fornecedor/${id}`);
-            console.log('ResponseFornecedor', response.data.content);
             
             if (response.status === 200) {
                 return response.data;
