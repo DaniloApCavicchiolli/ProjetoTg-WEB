@@ -10,6 +10,7 @@ import { ProviderCategoria } from './contexts/CategoriaContext';
 import { ProviderProduto } from './contexts/ProdutoContext';
 import { ProviderFornecedorProduto } from './contexts/FornecedorProdutosContext';
 import { ProviderSolicitacao } from './contexts/SolicitacoesContext';
+import { ProviderCotacao } from './contexts/CotacaoContext';
 // import App from './views/pages/ListFornecedores/Perfil';
 
 ReactDOM.render(
@@ -21,7 +22,9 @@ ReactDOM.render(
           <ProviderProduto>
             <ProviderFornecedorProduto>
               <ProviderSolicitacao>
-                <App />
+                <ProviderCotacao>
+                  <App />
+                </ProviderCotacao>
               </ProviderSolicitacao>
             </ProviderFornecedorProduto>
           </ProviderProduto>
