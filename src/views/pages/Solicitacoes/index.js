@@ -8,7 +8,6 @@ import SolicitacoesRow from "../../../components/SolicitacoesRow";
 import ModalDelete from "./ModalDelete";
 import ModalEdit from "./ModalEdit";
 
-import { AuthContextFornecedor } from "../../../contexts/FornecedorContext";
 import { ContextSolicitacao } from "../../../contexts/SolicitacoesContext";
 
 import colors from "../../../styles/colors";

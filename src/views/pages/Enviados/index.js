@@ -1,62 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { RiSearchLine, RiFilterLine } from "react-icons/ri";
 import { BiFontSize } from "react-icons/bi";
 import Pagination from '@mui/material/Pagination';
 import Select from "react-select";
 
+import { ContextCotacao } from "../../../contexts/CotacaoContext";
 import EnviadosRow from "../../../components/EnviadosRow";
 import { getNivel } from "../../../services/auth";
 import colors from "../../../styles/colors";
 
 import { Container, Header, Content, Body, Buscar, Head, Filtros } from "./styles";
 
-const enviadosData = [
-    {
-        nome: 'Produto 1',
-        marca: 'Marca 1',
-        fornecedor: 'Fornecedor 1',
-        fornecedorEndereco: 'Endereço Fornecedor',
-        valor: 20.00,
-        date: '20/05/2023'
-    },
-    {
-        nome: 'Produto 2',
-        marca: 'Marca 2',
-        fornecedor: 'Fornecedor 2',
-        fornecedorEndereco: 'Endereço Fornecedor 2',
-        valor: 22.00,
-        date: '22/05/2023'
-    },
-    {
-        nome: 'Produto 3',
-        marca: 'Marca 3',
-        fornecedor: 'Fornecedor 3',
-        fornecedorEndereco: 'Endereço Fornecedor 3',
-        valor: 23.00,
-        date: '23/05/2023'
-    },
-    {
-        nome: 'Produto 4',
-        marca: 'Marca 4',
-        fornecedor: 'Fornecedor 4',
-        fornecedorEndereco: 'Endereço Fornecedor 4',
-        valor: 24.00,
-        date: '24/05/2023'
-    },
-    {
-        nome: 'Produto 5',
-        marca: 'Marca 5',
-        fornecedor: 'Fornecedor 5',
-        fornecedorEndereco: 'Endereço Fornecedor 5',
-        valor: 25.00,
-        date: '25/05/2023'
-    }
-]
-
 function Enviados() {
     const nivel = getNivel();
+    const { LoadAllCotacoes, LoadAllCotacoesFornecedor } = useContext(ContextCotacao);
     const [cor, setCor] = useState(0);
-    const [enviados, setEnviados] = useState(enviadosData);
+    const [enviados, setEnviados] = useState([]);
     const [buscar, setBuscar] = useState();
 
     const [produtos, setProdutos] = useState([
@@ -74,7 +33,7 @@ function Enviados() {
 
     const [page, setPage] = useState(0);
 
-    const registros = enviadosData?.length;
+    const registros = enviados?.length;
     const enviadosPaginado = enviados?.slice(page * 5, page * 5 + 5);
     const totalPages = Math.ceil(enviados.length / 5);
 
@@ -98,6 +57,18 @@ function Enviados() {
             height: '100%'
         })
     };
+
+    useEffect(() => {
+        if (nivel === '999') {
+            LoadAllCotacoes().then((result) => {
+                setEnviados(result.content);
+            });
+        } else {
+            LoadAllCotacoesFornecedor().then((result) => {
+                setEnviados(result.content);
+            });
+        }
+    }, []);
 
     return (
         <>

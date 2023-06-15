@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { RiDeleteBin5Line, RiEditBoxFill, RiCheckboxCircleLine } from "react-icons/ri";
 import { getNivel } from "../../services/auth";
 import { toast } from "react-toastify";
+import { format } from 'date-fns';
 
 import { Container, Body, Buttons } from './styles';
 
 const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, setShowModalEdit }) => {
     const nivel = getNivel();
     const [valor, setValor] = useState('');
+    console.log('solicitacoes', solicitacoes);
 
     const handleModalDelte = () => {
         if (solicitacoes.value || nivel === '999') {
@@ -46,7 +48,7 @@ const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, se
                 </Body>
                 <Body>
                     <p>Data</p>
-                    <span>{solicitacoes.date}</span>
+                    <span>{format(new Date(solicitacoes.createdAt), 'dd/MM/yyyy')}</span>
                 </Body>
                 <Body>
                     <p>Valor</p>
