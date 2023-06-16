@@ -9,7 +9,14 @@ import { Container, Body, Buttons } from './styles';
 const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, setShowModalEdit }) => {
     const nivel = getNivel();
     const [valor, setValor] = useState('');
-    console.log('solicitacoes', solicitacoes);
+
+    const valorRespondido = solicitacoes?.fk_cotacao;
+    const valorRespondidos = valorRespondido?.map((data) => {
+        return data.valor
+    });
+    const fornecedor = valorRespondido?.map((data) => {
+        return data.fk_fornecedor.name
+    });
 
     const handleModalDelte = () => {
         if (solicitacoes.value || nivel === '999') {
@@ -30,6 +37,11 @@ const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, se
     return (
         <>
             <Container>
+                {nivel === '999' && fornecedor.length > 0 &&
+                    <header>
+                        <p>Fornecedor</p>
+                        <span>{fornecedor}</span>
+                    </header>}
                 <header>
                     <p>Nome</p>
                     <span>{solicitacoes.nome}</span>
@@ -55,11 +67,11 @@ const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, se
                     <div>
                         <p>R$</p>
                         <input
-                            value={solicitacoes.value ? solicitacoes.value : valor}
+                            value={valorRespondidos || valor}
                             type={'number'}
                             onChange={(e) => setValor(e.target.value)}
-                            style={{ paddingLeft: '5px', outline: 0, backgroundColor: 'white' }}
-                            disabled={solicitacoes.value ? true : false}
+                            style={{ paddingLeft: '5px', outline: 0, backgroundColor: 'white', borderRadius: 10 }}
+                            disabled={valorRespondidos ? true : false}
                         />
                     </div>
                 </Body>
