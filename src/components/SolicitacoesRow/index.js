@@ -37,7 +37,7 @@ const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, se
     };
 
     const handleModalDelte = () => {
-        if (valorRespondidos || nivel === '999') {
+        if (valorRespondidos?.length > 0 || nivel === '999') {
             setShowModalDelete(true);
         } else {
             toast.error("Cotação não realizada");
@@ -85,11 +85,11 @@ const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, se
                     <div>
                         <p>R$</p>
                         <input
-                            value={valorRespondidos.length > 0 ? valorRespondidos : valor}
+                            value={valorRespondidos?.length > 0 ? valorRespondidos : valor}
                             type={'number'}
                             onChange={(e) => setValor(e.target.value)}
                             style={{ paddingLeft: '5px', outline: 0, backgroundColor: 'white', borderRadius: 10 }}
-                            disabled={valorRespondidos.length > 0 ? true : false}
+                            disabled={valorRespondidos?.length > 0 ? true : false}
                         />
                     </div>
                 </Body>
