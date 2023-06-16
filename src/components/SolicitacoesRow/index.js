@@ -85,7 +85,7 @@ const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, se
                     <div>
                         <p>R$</p>
                         <input
-                            value={valorRespondidos?.length > 0 ? valorRespondidos : valor}
+                            value={valorRespondidos?.length > 0 ? valorRespondidos[0].toFixed(2) : valor}
                             type={'number'}
                             onChange={(e) => setValor(e.target.value)}
                             style={{ paddingLeft: '5px', outline: 0, backgroundColor: 'white', borderRadius: 10 }}
