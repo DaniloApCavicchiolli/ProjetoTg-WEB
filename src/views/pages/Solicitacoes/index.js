@@ -42,6 +42,18 @@ function Solicitacoes() {
     const solicitacoesPaginado = solicitacoes?.slice(paginas * 5, paginas * 5 + 5);
     const totalPages = Math.ceil(solicitacoes.length / 5);
 
+    const handleUser = () => {
+        if (nivel === '999') {
+            LoadAllSolicitacoes().then((result) => {
+                setSolicitacoes(result.content);
+            });
+        } else {
+            LoadAllSolicitacoesFornecedor().then((result) => {
+                setSolicitacoes(result.content);
+            });
+        }
+    }
+
     const customStyles = {
         control: () => ({
             width: 150,
@@ -64,15 +76,7 @@ function Solicitacoes() {
     };
 
     useEffect(() => {
-        if (nivel === '999') {
-            LoadAllSolicitacoes().then((result) => {
-                setSolicitacoes(result.content);
-            });
-        } else {
-            LoadAllSolicitacoesFornecedor().then((result) => {
-                setSolicitacoes(result.content);
-            });
-        }
+        handleUser();
     }, []);
 
     return (
@@ -80,6 +84,8 @@ function Solicitacoes() {
             {showModalDelete && (
                 <ModalDelete
                     setShowModalDelete={setShowModalDelete}
+                    item={itemSelected}
+                    loadSolicitacoes={handleUser}
                 />
             )}
             {showModalEdit && (

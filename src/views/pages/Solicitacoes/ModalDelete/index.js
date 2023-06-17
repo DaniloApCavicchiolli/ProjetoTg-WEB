@@ -5,20 +5,22 @@ import { Container, Image, Content, Body, ButtonSecodary } from "./styles";
 import { ContextSolicitacao } from "../../../../contexts/SolicitacoesContext";
 import Button from "../../../../components/Button";
 
-function ModalDelete({ setShowModalDelete }) {
+function ModalDelete({ setShowModalDelete, item, loadSolicitacoes }) {
     const { deleteSolicitacao } = useContext(ContextSolicitacao);
+    const cotaçãoId = item.fk_cotacao.map(item => item.id);
 
     return (
         <Container>
             <Body>
                 <Image src={deleteUser} />
                 <Content>
-                    <h1>Você realmente deseja excluir a solicitação?</h1>
+                    <h1>Você realmente deseja excluir a cotação?</h1>
                     <div>
                         <ButtonSecodary
                             onClick={async () => {
-                                // await deleteSolicitacao(item?.id);
+                                await deleteSolicitacao(cotaçãoId);
                                 setShowModalDelete(false);
+                                loadSolicitacoes();
                             }}
                         >
                             CONFIRMAR

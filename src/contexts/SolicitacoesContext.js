@@ -27,7 +27,7 @@ const ProviderSolicitacao = ({ children }) => {
         try {
             const id = getId();
             const response = await api.get(`/solicitacao_fornecedor/${id}`);
-            
+
             if (response.status === 200) {
                 return response.data;
             }
@@ -39,16 +39,16 @@ const ProviderSolicitacao = ({ children }) => {
         }
     };
 
-    /* Função para delatar solicitação */
+    /* Função para delatar relação de fornecedor com solicitação (cotação) */
     const deleteSolicitacao = async (id) => {
         try {
-            const response = await api.delete(`/solicitacao/${id}`);
+            const response = await api.delete(`/cotacao/${id}`);
             if (response.status === 200) {
                 toast.success(response.data.message);
-                return response.data;
+            } else {
+                toast.error(response.data.message);
+                return;
             }
-            toast.error(response.data.message);
-            return;
         } catch (err) {
             console.log(err);
             toast.error(err?.response?.data?.message || "Não foi possível excluir a solicitação");

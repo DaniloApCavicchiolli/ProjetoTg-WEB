@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 import { Container, Body, Buttons } from './styles';
 import api from '../../services/api';
 
-const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, setShowModalEdit }) => {
+const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, setShowModalEdit, paginas }) => {
     const nivel = getNivel();
     const [valor, setValor] = useState('');
 
@@ -24,11 +24,11 @@ const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, se
             const id = getId();
             const solicitacao_id = solicitacoes.id;
 
-            if (valor >= 0) {
-                await api.post(`/fornecedor/${id}/solicitacao/${solicitacao_id}`, { valor: valor });
+            if (valor !== '') {
+                await api.post(`/fornecedor/${id}/solicitacao/${solicitacao_id}`, { valor: parseFloat(valor) });
                 window.location.reload();
             } else {
-                toast.error(`Digite um valor! ou "0" caso não possua o produto`);
+                toast.error(`Digite um valor ou 'ZERO' caso não possua o produto!`);
                 return;
             }
         } catch (err) {
@@ -111,7 +111,7 @@ const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, se
                     </button>
                     <button
                         style={{ color: "#F26689" }}
-                        onClick={() => { handleModalDelte() }}
+                        onClick={() => { handleModalDelte(); setItemSelected(solicitacoes) }}
                     >
                         <RiDeleteBin5Line size={30} />
                     </button>
