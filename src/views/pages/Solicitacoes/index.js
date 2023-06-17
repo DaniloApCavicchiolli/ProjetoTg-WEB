@@ -92,6 +92,7 @@ function Solicitacoes() {
                 <ModalEdit
                     setShowModalEdit={setShowModalEdit}
                     item={itemSelected}
+                    loadSolicitacoes={handleUser}
                 />
             )}
             <Container>
@@ -173,6 +174,7 @@ function Solicitacoes() {
                         setItemSelected={setItemSelected}
                         setShowModalDelete={setShowModalDelete}
                         setShowModalEdit={setShowModalEdit}
+                        loadSolicitacoes={handleUser}
                     />
                 ))}
                 <Pagination

@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 import { Container, Body, Buttons } from './styles';
 import api from '../../services/api';
 
-const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, setShowModalEdit, paginas }) => {
+const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, setShowModalEdit, loadSolicitacoes, paginas }) => {
     const nivel = getNivel();
     const [valor, setValor] = useState('');
 
@@ -25,8 +25,11 @@ const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, se
             const solicitacao_id = solicitacoes.id;
 
             if (valor !== '') {
-                await api.post(`/fornecedor/${id}/solicitacao/${solicitacao_id}`, { valor: parseFloat(valor) });
-                window.location.reload();
+                const response = await api.post(`/fornecedor/${id}/solicitacao/${solicitacao_id}`, { valor: parseFloat(valor) });
+                if (response.status === 200) {
+                    toast.success("Cotação realizada com sucesso");
+                    loadSolicitacoes();
+                }
             } else {
                 toast.error(`Digite um valor ou 'ZERO' caso não possua o produto!`);
                 return;
@@ -45,7 +48,7 @@ const SolicitacoesRow = ({ solicitacoes, setItemSelected, setShowModalDelete, se
     }
 
     const handleModalEdit = () => {
-        if (solicitacoes.value) {
+        if (valorRespondidos?.length > 0) {
             setShowModalEdit(true);
         } else {
             toast.error("Cotação não realizada");

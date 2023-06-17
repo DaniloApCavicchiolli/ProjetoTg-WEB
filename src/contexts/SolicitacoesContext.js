@@ -56,19 +56,19 @@ const ProviderSolicitacao = ({ children }) => {
         }
     };
 
-    /* Função para atualiza solicitação */
-    const updateSolicitacao = async (data, id) => {
+    /* Função para atualizar cotação */
+    const updateSolicitacao = async (data, cotacaoId) => {
         try {
-            const resp = await api.put(`/solicitacao/${id}`, data);
+            const resp = await api.put(`/cotacao/${cotacaoId}`, data);
             if (resp?.status === 200) {
                 toast.success(resp.data.message);
-                return resp.data;
+            } else {
+                toast.error(resp.data.message);
+                return;
             }
-            toast.error(resp.data.message);
-            return;
         } catch (err) {
             console.log(err);
-            toast.error(err?.response?.data?.message || "Não foi possível atualizar solicitação");
+            toast.error(err?.resp?.data?.message || "Não foi possível atualizar a cotação");
             return false;
         }
     };

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import Button from "../../../../components/Button";
 import Input from "../../../../components/Input";
 import {
@@ -18,11 +18,32 @@ import {
     RiMoneyDollarCircleLine
 } from "react-icons/ri";
 
+import { format } from 'date-fns'
+import { ContextSolicitacao } from "../../../../contexts/SolicitacoesContext";
+
 import { Container, Forms, Body, Content, Column, Image, Buttons } from "./styles";
 
-function ModalEdit({ setShowModalEdit, item }) {
+function ModalEdit({ setShowModalEdit, item, loadSolicitacoes }) {
     const formRef = useRef(null);
+    const { updateSolicitacao } = useContext(ContextSolicitacao);
     const [disable, setDisable] = useState(false);
+
+    const valor = item?.fk_cotacao[0].valor
+    const data = item?.fk_cotacao[0].created_at
+    const cotacaoId = item?.fk_cotacao[0].id
+
+    const handleSubmit = async (data) => {
+        try {
+            const valor = {
+                valor: parseFloat(data.value.replace(/\D/g, ""))
+            }
+            await updateSolicitacao(valor, cotacaoId);
+            setShowModalEdit(false);
+            loadSolicitacoes();
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <Container>
@@ -33,8 +54,8 @@ function ModalEdit({ setShowModalEdit, item }) {
                     <Image />
                 </div>
                 <p>Confira os dados abaixo</p>
-                <Forms ref={formRef} onSubmit={() => { setShowModalEdit(false) }}
-                    initialData={{ ...item, value: `R$ ` + item.value }}>
+                <Forms ref={formRef} onSubmit={handleSubmit}
+                    initialData={{ ...item, value: `R$ ` + valor, date: format(new Date(data), 'dd/MM/yyyy') }}>
                     <Content>
                         <Column>
                             <div>
@@ -43,7 +64,7 @@ function ModalEdit({ setShowModalEdit, item }) {
                                     name="nome"
                                     placeholder="Nome do produto"
                                     icon={RiInboxArchiveLine}
-                                    disabled={disable}
+                                    disabled={true}
                                 />
                             </div>
                             <div>
@@ -52,7 +73,7 @@ function ModalEdit({ setShowModalEdit, item }) {
                                     name="marca"
                                     placeholder="Marca do produto"
                                     icon={RiPriceTag2Line}
-                                    disabled={disable}
+                                    disabled={true}
                                 />
                             </div>
                             <div>
@@ -61,7 +82,7 @@ function ModalEdit({ setShowModalEdit, item }) {
                                     name="quantidade"
                                     placeholder="Quantidade"
                                     icon={RiStackLine}
-                                    disabled={disable}
+                                    disabled={true}
                                 />
                             </div>
                         </Column>
@@ -72,7 +93,7 @@ function ModalEdit({ setShowModalEdit, item }) {
                                     name="forma_pagamento"
                                     placeholder="Forma de Pagamento"
                                     icon={RiWallet3Line}
-                                    disabled={disable}
+                                    disabled={true}
                                 />
                             </div>
                             <div>
@@ -81,10 +102,10 @@ function ModalEdit({ setShowModalEdit, item }) {
                                     name="date"
                                     placeholder="Data Solicitação"
                                     icon={RiCalendarTodoLine}
-                                    disabled={disable}
+                                    disabled={true}
                                 />
                             </div>
-                            {item.value &&
+                            {valor &&
                                 <div>
                                     <span style={{ padding: 5 }}>Valor</span>
                                     <Input
