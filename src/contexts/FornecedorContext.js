@@ -40,7 +40,7 @@ const AuthProviderFornecedor = ({ children }) => {
     try {
       const resp = await api.put(`/fornecedor/${id}`, data);
       if (resp?.status === 200) {
-        toast.success("Fornecedor atualizado com suçesso!");
+        toast.success("Fornecedor atualizado com sucesso!");
         return resp.data;
       }
     } catch (err) {
