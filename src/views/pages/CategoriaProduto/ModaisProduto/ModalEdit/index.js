@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 
 import { Container, Forms, Body, Content, Column, Image } from "./styles";
 
-function ModalEditProduto({ setShowModalEdit, user, loading }) {
+function ModalEditProduto({ setShowModalEdit, user, loading, loadCategorias }) {
     const formRef = useRef(null);
     const { updateProduto } = useContext(ContextProduto);
 
@@ -37,7 +37,8 @@ function ModalEditProduto({ setShowModalEdit, user, loading }) {
             if (data.categorias.length != 0) {
                 await updateProduto(data, user?.id);
                 setShowModalEdit(false);
-                loading();
+                await loading();
+                await loadCategorias();
                 window.location.reload();
             } else {
                 toast.error("Selecione uma Categoria");

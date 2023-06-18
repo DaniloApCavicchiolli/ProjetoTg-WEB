@@ -5,7 +5,7 @@ import { ContextProduto } from "../../../../../contexts/ProdutoContext";
 
 import { Container, Image, Content, Body, ButtonSecondary } from "./styles";
 
-function ModalDeleteProduto({ setShowModalDelete, user, loading }) {
+function ModalDeleteProduto({ setShowModalDelete, user, loading, loadCategorias }) {
 
   const { deleteProduto } = useContext(ContextProduto);
 
@@ -19,7 +19,8 @@ function ModalDeleteProduto({ setShowModalDelete, user, loading }) {
             <ButtonSecondary
               onClick={async () => {
                 await deleteProduto(user?.id);
-                loading();
+                await loading();
+                await loadCategorias();
                 setShowModalDelete(false);
               }}
             >

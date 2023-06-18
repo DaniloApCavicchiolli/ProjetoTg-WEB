@@ -89,6 +89,7 @@ function CategoriaProduto() {
                 (<ModalCreate
                     setShowModalCreate={setShowModalCreate}
                     loading={loadingCategorias}
+                    loadingProdutos={loadingProdutos}
                 />)
             }
             {botao === 1 &&
@@ -97,6 +98,7 @@ function CategoriaProduto() {
                         setShowModalEdit={setShowModalEdit}
                         user={userSelected}
                         loading={loadingCategorias}
+                        loadingProdutos={loadingProdutos}
                     />
                 )}
             {botao === 1 &&
@@ -105,6 +107,7 @@ function CategoriaProduto() {
                         setShowModalDelete={setShowModalDelete}
                         user={userSelected}
                         loading={loadingCategorias}
+                        loadingProdutos={loadingProdutos}
                     />
                 )}
             {botao === 2 &&
@@ -112,6 +115,7 @@ function CategoriaProduto() {
                 (<ModalCreateProduto
                     setShowModalCreate={setShowModalCreate}
                     loading={loadingProdutos}
+                    loadCategorias={loadingCategorias}
                 />)
             }
             {botao === 2 &&
@@ -120,6 +124,7 @@ function CategoriaProduto() {
                         setShowModalDelete={setShowModalDelete}
                         user={userSelected}
                         loading={loadingProdutos}
+                        loadCategorias={loadingCategorias}
                     />
                 )}
             {botao === 2 &&
@@ -128,6 +133,7 @@ function CategoriaProduto() {
                         setShowModalEdit={setShowModalEdit}
                         user={userSelected}
                         loading={loadingProdutos}
+                        loadCategorias={loadingCategorias}
                     />
                 )}
             <Container>

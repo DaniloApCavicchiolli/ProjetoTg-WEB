@@ -7,7 +7,7 @@ import getValidationErrors from "../../../../../utils/getValidationErrors";
 
 import { Container, Forms, Body, Content, Column, Image } from "./styles";
 
-function ModalCreate({ setShowModalCreate, user, loading }) {
+function ModalCreate({ setShowModalCreate, user, loading, loadingProdutos }) {
     const formRef = useRef(null);
 
     const { createCategoria } = useContext(ContextCategoria);
@@ -26,7 +26,8 @@ function ModalCreate({ setShowModalCreate, user, loading }) {
             formRef.current?.setErrors({});
 
             const resp = await createCategoria(data);
-            loading();
+            await loading();
+            await loadingProdutos();
             setShowModalCreate(false);
         } catch (err) {
             console.log(err);

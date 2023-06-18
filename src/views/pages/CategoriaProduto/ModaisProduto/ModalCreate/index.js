@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 
 import { Container, Forms, Body, Content, Column, Image } from "./styles";
 
-function ModalCreateProduto({ setShowModalCreate, loading }) {
+function ModalCreateProduto({ setShowModalCreate, loading, loadCategorias }) {
     const formRef = useRef(null);
     const { createProduto } = useContext(ContextProduto);
 
@@ -38,6 +38,7 @@ function ModalCreateProduto({ setShowModalCreate, loading }) {
             if (data.categorias.length !== 0) {
                 await createProduto(data);
                 await loading();
+                await loadCategorias();
                 setShowModalCreate(false);
                 window.location.reload();
             } else {

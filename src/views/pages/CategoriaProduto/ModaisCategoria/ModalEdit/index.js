@@ -7,7 +7,7 @@ import getValidationErrors from "../../../../../utils/getValidationErrors";
 
 import { Container, Forms, Body, Content, Column, Image } from "./styles";
 
-function ModalEdit({ setShowModalEdit, user, loading }) {
+function ModalEdit({ setShowModalEdit, user, loading, loadingProdutos }) {
     const formRef = useRef(null);
     const { updateCategoria } = useContext(ContextCategoria);
 
@@ -24,9 +24,9 @@ function ModalEdit({ setShowModalEdit, user, loading }) {
             formRef.current?.setErrors({});
 
             await updateCategoria(data, user?.id);
-            loading();
+            await loading();
+            await loadingProdutos();
             setShowModalEdit(false);
-            // window.location.reload();
         } catch (err) {
             const errors = getValidationErrors(err);
             formRef.current?.setErrors(errors);
