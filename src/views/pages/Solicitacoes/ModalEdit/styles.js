@@ -2,7 +2,7 @@ import { Form } from "@unform/web";
 import styled from "styled-components";
 import colors from "../../../../styles/colors";
 import fonts from "../../../../styles/fonts";
-import imageLogo from "../../../../assets/seuLogo.png";
+import imageLogo from "../../../../assets/icon.png";
 
 export const Container = styled.div`
   position: fixed;

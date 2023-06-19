@@ -3,7 +3,7 @@ import styled from "styled-components";
 import colors from "../../../../styles/colors";
 import fonts from "../../../../styles/fonts";
 // import imageLogo from "../../../../assets/logo1.png";
-import imageLogo from "../../../../assets/seuLogo.png";
+import imageLogo from "../../../../assets/icon2.png";
 
 export const Container = styled.div`
   display: flex;
@@ -46,15 +46,15 @@ export const Menu = styled.div`
 
 export const Title = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
+  /* justify-content: center; */
+  /* align-items: center; */
+  height: 78px;
   /* background-color: #7F63F4; */
   background-image: url(${imageLogo});
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   margin: 20px;
-  transition: all 1s;
+  /* transition: all 1s; */
   @media(max-width: 429px) {
     height: 10px;
     opacity: 0;
